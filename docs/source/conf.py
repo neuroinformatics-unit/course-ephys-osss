@@ -81,7 +81,7 @@ exclude_patterns = [
 # a list of builtin themes.
 #
 html_theme = 'pydata_sphinx_theme'
-html_title = 'Your Project Name'
+html_title = 'OSSS Extracellular Ephys 2026 Planning'
 
 # Redirect the webpage to another URL
 # Sphinx will create the appropriate CNAME file in the build directory
@@ -109,7 +109,7 @@ html_theme_options = {
             # Label for this link
             "name": "GitHub",
             # URL where the link will redirect
-            "url": "TO DO",  # required
+            "url": "https://github.com/neuroinformatics-unit/course-ephys-osss",  # required
             # Icon class (if "type": "fontawesome"), or path to local image (if "type": "local")
             "icon": "fa-brands fa-github",
             # The type of image to be used (see below for details)
