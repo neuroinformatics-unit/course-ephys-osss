@@ -7,7 +7,7 @@ See [planning](planning.md) for a rough working outline of the schedule so far.
 
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 :caption: Sections
 
 planning
