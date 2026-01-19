@@ -86,7 +86,7 @@ html_title = 'OSSS Extracellular Ephys 2026 Planning'
 # Redirect the webpage to another URL
 # Sphinx will create the appropriate CNAME file in the build directory
 # https://www.sphinx-doc.org/en/master/usage/extensions/githubpages.html
-html_baseurl = "https://course-osss-ephys-2026-planning.neuroinformatics.dev/"
+html_baseurl = "https://neuroinformatics-unit.github.io/course-osss-ephys-2026-planning"
 # "https://course-osss-ephys-2026-planning.neuroinformatics.dev/"
 # https://neuroinformatics-unit.github.io/course-osss-ephys-2026-planning/
 
