@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Your Project Name'
+project = 'OSSS Ephys Course 2026'
 copyright = '2022, Neuroinformatics Unit'
 author = 'Neuroinformatics Unit'
 
@@ -86,7 +86,9 @@ html_title = 'Your Project Name'
 # Redirect the webpage to another URL
 # Sphinx will create the appropriate CNAME file in the build directory
 # https://www.sphinx-doc.org/en/master/usage/extensions/githubpages.html
-html_baseurl = 'TODO: add your URL here'
+html_baseurl = "https://neuroinformatics-unit.github.io/course-osss-ephys-2026-planning/"
+# "https://course-osss-ephys-2026-planning.neuroinformatics.dev/"
+# https://neuroinformatics-unit.github.io/course-osss-ephys-2026-planning/
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
