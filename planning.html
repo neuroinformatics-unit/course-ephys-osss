@@ -1,0 +1,621 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>OSSS Course Planning &#8212; Your Project Name</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=9b69b756" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=d45e8c67"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'planning';</script>
+    <link rel="canonical" href="https://neuroinformatics-unit.github.io/course-osss-ephys-2026-planning/planning.html" />
+    <link rel="icon" href="_static/logo_light.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Planning Extracellular Ephys OSSS 2026" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_light.png" class="logo__image only-light" alt=""/>
+    <img src="_static/logo_dark.png" class="logo__image only-dark pst-js-only" alt=""/>
+  
+  
+    <p class="title logo__title">Your Project Name</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    OSSS Course Planning
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="TO DO" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    OSSS Course Planning
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="TO DO" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">OSSS Course Planning</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="osss-course-planning">
+<h1>OSSS Course Planning<a class="headerlink" href="#osss-course-planning" title="Link to this heading">#</a></h1>
+<section id="plan">
+<h2>Plan<a class="headerlink" href="#plan" title="Link to this heading">#</a></h2>
+<section id="monday-morning-10-00-13-00-introduction">
+<h3>Monday Morning (10:00-13:00) : Introduction<a class="headerlink" href="#monday-morning-10-00-13-00-introduction" title="Link to this heading">#</a></h3>
+<p><strong>Goal</strong></p>
+<ul class="simple">
+<li><p>Provide a high-level overview of the main concepts in extracellular electrophysiology, of which
+we will fill in the details over the next few days.</p></li>
+<li><p>Give a general introduction to SpikeInterface</p></li>
+<li><p>Provide a simple, full SpikeInterface pipeline that they can use for reference for the coming days</p></li>
+</ul>
+<p><strong>Plan:</strong></p>
+<p><em>10:00 - 10:15</em> : Welcome, housekeeping, overview of the course, downloading the example data</p>
+<p><em>10:15 - 10:45</em> : (lecture, Joe) A high-level introduction to extracellular electrophysiology:</p>
+<ul class="simple">
+<li><p>Purpose of electrophysiology recordings (+ some famous results)</p></li>
+<li><p>Probe evolution (tetrodes to high-density).</p></li>
+<li><p>Introduction to the data (probe channels -&gt; timeseries, time x channel data)</p></li>
+<li><p>Very brief overview of the pipeline (preprocessing, sorting, quality metrics). What the steps are,
+why we do them and how they result in data (spike times from good units) that are used in papers.</p></li>
+</ul>
+<p><em>10:45 - 11:45</em> : (coding) Coding up a very simple pipeline and exploring the data.</p>
+<ul class="simple">
+<li><p>Quick introduction to SpikeInterface (e.g. history and purpose)</p></li>
+<li><p>Loading data in SpikeInterface</p></li>
+<li><p>SpikeInterface objects</p></li>
+<li><p>Loading and visualising the probe</p></li>
+<li><p>Visualising the raw data</p></li>
+<li><p>Implementing a simple preprocessing pipeline (phase shift, filter, CMR)</p></li>
+</ul>
+<p><em>11:45 - 12:05</em> : (lecture, Olivier?) A deeper introduction to electrophysiological data</p>
+<ul class="simple">
+<li><p>ADC sampling, sampling theory (quick introduction to sine, cosine functions and the Fourier transform / Power spectrum)</p></li>
+<li><p>Saturation and bit depth</p></li>
+</ul>
+<p><em>12:05 - 13:00</em> :  (coding) Implement the rest of the pipeline (sorting, sorting analyzer, quality metrics)</p>
+<p>(depending on how things are going, we could swap the last two, having a very long coding period and ending on the lecture)</p>
+<p><strong>Example data required</strong></p>
+<p>A very short (1-2 s) recording that can be quickly run through the entire pipeline.</p>
+</section>
+<section id="tuesday-morning-10-00-13-00-preprocessing">
+<h3>Tuesday Morning (10:00 - 13:00) : Preprocessing<a class="headerlink" href="#tuesday-morning-10-00-13-00-preprocessing" title="Link to this heading">#</a></h3>
+<p><strong>Goal</strong></p>
+<p>They should have a good understanding of how to implement common and state-of-the-art
+preprocessing steps, and at least some intuition as to the underlying theory.</p>
+<p><strong>Plan</strong></p>
+<p><em>10:00-10:30</em> : (lecture, Joe?) Talk on the theory of preprocessing steps</p>
+<ul class="simple">
+<li><p>phase shift, bandpass, CMR</p></li>
+<li><p>whitening</p></li>
+<li><p>drift correction</p></li>
+<li><p>running preprocessing steps in SpikeInterface vs. the sorter (e.g. kilosort)</p></li>
+<li><p>filter edge effects, chunking</p></li>
+<li><p>lazy data access</p></li>
+<li><p>always look at your data</p></li>
+</ul>
+<p><em>10:30 - 11:30</em> : (coding) Add whitening and drift correction to the pipeline. Visualise before vs. after.
+Exploring motion outputs (e.g. drift maps)
+If this is remaining time, a stretch goal can be a quick talk on
+spatial highpass filter, and running it in SpikeInterface.</p>
+<p><em>11:30 - 12:00</em> : (lecture, Olivier?) Lecture on advanced preprocessing
+(bad channel detection, raw data quality metrics, saturation detection)</p>
+<p><em>12:00 - 13:00</em> : (coding) Adding these steps to the pipeline.</p>
+<p><strong>Example data required</strong></p>
+<p>We could use the same as Monday, but for this data it’s not necessary it needs to be sortable.
+Maybe a good example for bad-channel detection, saturation or raw-data quality metrics would be good.
+We could have a good example and a bad example.</p>
+</section>
+<section id="tuesday-afternoon-14-00-17-00-sorting">
+<h3>Tuesday Afternoon (14:00-17:00) : Sorting<a class="headerlink" href="#tuesday-afternoon-14-00-17-00-sorting" title="Link to this heading">#</a></h3>
+<p><strong>Goal</strong></p>
+<p>By the end of this session they should have a strong idea of the purpose of sorting,
+key concepts (spike times, unit assignment, templates, waveforms / snippets).
+Know the names of a few different sorters and how to compare them.
+Understand the possible approaches to multi-session recordings, gain experience with UnitMatch.</p>
+<p><strong>Plan</strong></p>
+<p><em>14:00 - 14:30</em> : (lecture, Alessio?) Overview of sorting</p>
+<ul class="simple">
+<li><p>Why we need to do it</p></li>
+<li><p>The key outputs (spike times, unit assignment, templates (also can mention waveforms / snippets))</p></li>
+<li><p>It is a hard problem - many sorters exist</p></li>
+<li><p>We can use spikeinterface to run and compare various sorters</p></li>
+</ul>
+<p><em>14:30 - 15:30</em> : (coding) Run a couple of different sorters in SpikeInterface and compare the outputs using sorting comparison.
+We can leave it a little up to the user, but KS4 and Lupin seem a good pair to use in the example.
+We can go into more detail here the options to run preprocessing steps in SpikeInterface vs. the sorter,
+as well as introduce sorting components.</p>
+<p><em>15:30 - 16:00</em> : (lecture, Alessio / Sam?) Deep dive into the black box, the general steps behind a sorter
+(peak detection, clustering, template matching etc.)</p>
+<p><em>16:00 - 17:00</em> : (lecture / coding, Enny) UnitMatch
+A 20-minute talk and 40 minute implementation? Happy to extend if this is not enough time</p>
+<p><strong>Example data required</strong></p>
+<p>Here we can use short data that sorts quickly, but it would be nice if it wasn’t all junk units.
+We could try and use the same data as on Monday.
+For UnitMatching, the sorting outputs from two sessions would work.</p>
+</section>
+<section id="wednesday-morning-10-00-13-00-assessing-sorting-quality">
+<h3>Wednesday Morning (10:00 - 13:00) : Assessing Sorting Quality<a class="headerlink" href="#wednesday-morning-10-00-13-00-assessing-sorting-quality" title="Link to this heading">#</a></h3>
+<p><strong>Goal</strong></p>
+<ul class="simple">
+<li><p>Understand why we need to sort and key concepts (e.g. splits, merges)</p></li>
+<li><p>Understand a few of the main quality metrics</p></li>
+<li><p>Know how to compute / threshold quality metrics in SpikeInterface and
+perform manual curation in the spikeinterface-gui</p></li>
+</ul>
+<p><strong>Plan</strong></p>
+<p><em>10:00 - 10:30</em> : (lecture, Chris/Julie?) Introduction to assessing sorting quality</p>
+<ul class="simple">
+<li><p>Why we need to do it, splits and merges, good/noise/mua clusters</p></li>
+<li><p>Quality metrics, and some detail on the main ones (e.g. refractory period, amplitude cutoff, cluster space metrics)</p></li>
+</ul>
+<p><em>10:30 - 11:45</em> : (coding)</p>
+<ul class="simple">
+<li><p>Use the sorting analyzer to compute metrics</p></li>
+<li><p>Using Bombcell through SpikeInterface</p></li>
+<li><p>Using UnitRefine through SpikeInterface</p></li>
+</ul>
+<p><em>11:45 - 12:05</em> : (lecture, Chris?) Overview of SpikeInterface GUI (e.g. what the different plots mean)</p>
+<p><em>12:05 - 13:00</em> : (coding) walkthrough / free time to curate a dataset in spikeinterface-gui</p>
+<p><strong>Example data required</strong></p>
+<p>We will need a small toy dataset that they can quickly create and run a sorting analyzer on.
+But it should have a few good units, so will be as small as possible while being useful.
+For the spikeinterface-GUI, we can just use the sorting output of a larger dataset.</p>
+</section>
+<section id="wednesday-afternoon-14-00-17-00-analysing-outputs">
+<h3>Wednesday Afternoon (14:00-17:00) : Analysing Outputs<a class="headerlink" href="#wednesday-afternoon-14-00-17-00-analysing-outputs" title="Link to this heading">#</a></h3>
+<p><strong>Plan</strong></p>
+<p>Something like?:</p>
+<ul class="simple">
+<li><p>20-30 minute talk on different types of extracellular ephys analysis. Some real use cases / papers</p></li>
+<li><p>20-30 minutes on walkthrough time alignment</p></li>
+<li><p>30 minutes: give a sorting output and some behavioural event times, construct a histogram ‘by hand’</p></li>
+<li><p>rest of the session (~2h) on using Pynapple?</p></li>
+</ul>
+</section>
+</section>
+<section id="general-thoughts-on-course-structure-content">
+<h2>General thoughts on course structure / content<a class="headerlink" href="#general-thoughts-on-course-structure-content" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>During the coding periods, we can walk through the code step-by-step for core pipeline, then have periods
+for those to do extra exercises (e.g. ‘Use get traces to get scaled and unscaled raw data’, ‘Plot data before and after whitening’ etc.’.
+This way those with less experience have a solid grounding, and those with more experience can go ahead and start on the exercises.</p></li>
+<li><p>We can have a lot of exercises, from easy to harder, to keep everyone busy. There is no obligation for them to complete these,
+it is just a tool for learning / prompting questions.</p></li>
+<li><p>The code will be presented through  Quarto, either through slides (e.g. here) or a book-like format (e.g. here), lets discuss.</p></li>
+<li><p>The benefit of the latter is we end up with a really nice handbook that should be generally useful.</p></li>
+<li><p>The coding periods will be interleaved with short (20-30 minute) lectures to discuss the theory.</p></li>
+<li><p>There will be a range of backgrounds and while we can assume basic Python knowledge, we cannot assume too
+much background in ephys / neuroscience / DSP. This is not a problem, we can still discuss advanced topics, we
+will just need to make sure to build to these from the ground-up.</p></li>
+<li><p>Their laptops may range in performance, where possible we should endeavour to use the smallest example data possible.</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h2>Other Notes<a class="headerlink" href="#other-notes" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Having a 10-minute end-of-session discussion / recap might be a nice idea</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Planning Extracellular Ephys OSSS 2026</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plan">Plan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monday-morning-10-00-13-00-introduction">Monday Morning (10:00-13:00) : Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuesday-morning-10-00-13-00-preprocessing">Tuesday Morning (10:00 - 13:00) : Preprocessing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuesday-afternoon-14-00-17-00-sorting">Tuesday Afternoon (14:00-17:00) : Sorting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wednesday-morning-10-00-13-00-assessing-sorting-quality">Wednesday Morning (10:00 - 13:00) : Assessing Sorting Quality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wednesday-afternoon-14-00-17-00-analysing-outputs">Wednesday Afternoon (14:00-17:00) : Analysing Outputs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-thoughts-on-course-structure-content">General thoughts on course structure / content</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-notes">Other Notes</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/planning.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item"><p class="sphinx-version">
+Created using <a href="https://sphinx-doc.org/">Sphinx</a> 9.1.0.
+<br/>
+</p>
+<p class="theme-version">
+Built with the
+<a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a>
+0.16.1.
+</p></div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><div class="things-in-a-row">
+    <a href="https://www.sainsburywellcome.org/web/">
+        <img src="_static/light-logo-swc.png" alt="Sponsors" class="only-light img-sponsor"/>
+        <img src="_static/dark-logo-swc.png" alt="Sponsors" class="only-dark img-sponsor"/>
+    </a>
+    <a href="https://www.ucl.ac.uk/gatsby/gatsby-computational-neuroscience-unit">
+        <img src="_static/light-logo-gatsby.png" alt="Sponsors" class="only-light img-sponsor"/>
+        <img src="_static/dark-logo-gatsby.png" alt="Sponsors" class="only-dark img-sponsor"/>
+    </a>
+    <a href="https://www.ucl.ac.uk/">
+        <img src="_static/light-logo-ucl.png" alt="Sponsors" class="only-light img-sponsor"/>
+        <img src="_static/dark-logo-ucl.png" alt="Sponsors" class="only-dark img-sponsor"/>
+    </a>
+</div></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
