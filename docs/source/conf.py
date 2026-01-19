@@ -90,6 +90,7 @@ html_baseurl = "https://neuroinformatics-unit.github.io/course-osss-ephys-2026-p
 # "https://course-osss-ephys-2026-planning.neuroinformatics.dev/"
 # https://neuroinformatics-unit.github.io/course-osss-ephys-2026-planning/
 
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
