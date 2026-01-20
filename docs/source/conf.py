@@ -81,7 +81,7 @@ exclude_patterns = [
 # a list of builtin themes.
 #
 html_theme = 'pydata_sphinx_theme'
-html_title = 'OSSS Ephys 2026'
+html_title = 'OSSS Ephys Course 2026'
 
 # Redirect the webpage to another URL
 # Sphinx will create the appropriate CNAME file in the build directory
@@ -117,7 +117,7 @@ html_theme_options = {
         }
    ],
    "logo": {
-        "text": "OSSS Extracellular Ephys Planning",
+        "text": "OSSS Ephys 2026",
         "image_light": "logo_light.png",
         "image_dark": "logo_dark.png",
     },
