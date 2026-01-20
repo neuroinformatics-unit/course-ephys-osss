@@ -117,7 +117,7 @@ html_theme_options = {
         }
    ],
    "logo": {
-        "text": "Your Project Name",
+        "text": "OSSS Extracellular Ephys Planning",
         "image_light": "logo_light.png",
         "image_dark": "logo_dark.png",
     },
