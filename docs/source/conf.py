@@ -81,7 +81,7 @@ exclude_patterns = [
 # a list of builtin themes.
 #
 html_theme = 'pydata_sphinx_theme'
-html_title = 'OSSS Extracellular Ephys 2026 Planning'
+html_title = 'OSSS Ephys 2026'
 
 # Redirect the webpage to another URL
 # Sphinx will create the appropriate CNAME file in the build directory
