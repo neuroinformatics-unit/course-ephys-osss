@@ -1,626 +1,626 @@
-2026-04-21 17:25:03,973 kilosort.run_kilosort INFO      
-2026-04-21 17:25:03,974 kilosort.run_kilosort INFO     Computing preprocessing variables.
-2026-04-21 17:25:03,974 kilosort.run_kilosort INFO     ----------------------------------------
-2026-04-21 17:25:03,990 kilosort.run_kilosort INFO     N samples: 75000
-2026-04-21 17:25:03,990 kilosort.run_kilosort INFO     N seconds: 2.5
-2026-04-21 17:25:03,990 kilosort.run_kilosort INFO     N batches: 2
-2026-04-21 17:25:04,632 kilosort.run_kilosort INFO     Preprocessing filters computed in 0.66s; total 0.66s
-2026-04-21 17:25:04,632 kilosort.run_kilosort DEBUG    hp_filter shape: torch.Size([30122])
-2026-04-21 17:25:04,632 kilosort.run_kilosort DEBUG    whiten_mat shape: torch.Size([384, 384])
-2026-04-21 17:25:04,850 kilosort.run_kilosort DEBUG    First batch min, max: (np.float32(-458.6556), np.float32(480.1634))
-2026-04-21 17:25:04,852 kilosort.run_kilosort INFO      
-2026-04-21 17:25:04,852 kilosort.run_kilosort INFO     Resource usage after preprocessing
-2026-04-21 17:25:04,852 kilosort.run_kilosort INFO     ********************************************************
-2026-04-21 17:25:04,852 kilosort.run_kilosort INFO     CPU usage:    84.50 %
-2026-04-21 17:25:04,852 kilosort.run_kilosort INFO     Mem used:     95.40 %     |      30.06 GB
-2026-04-21 17:25:04,852 kilosort.run_kilosort INFO     Mem avail:     1.45 / 31.51 GB
-2026-04-21 17:25:04,852 kilosort.run_kilosort INFO     ------------------------------------------------------
-2026-04-21 17:25:04,852 kilosort.run_kilosort INFO     GPU usage:    N/A
-2026-04-21 17:25:04,852 kilosort.run_kilosort INFO     GPU memory:   N/A
-2026-04-21 17:25:04,852 kilosort.run_kilosort INFO     ********************************************************
-2026-04-21 17:25:04,862 kilosort.run_kilosort INFO      
-2026-04-21 17:25:04,862 kilosort.run_kilosort INFO     Computing drift correction.
-2026-04-21 17:25:04,862 kilosort.run_kilosort INFO     ----------------------------------------
-2026-04-21 17:25:04,862 kilosort.spikedetect INFO     Re-computing universal templates from data.
-2026-04-21 17:25:11,567 kilosort.spikedetect INFO     Number of universal templates: 1146
-2026-04-21 17:25:11,768 kilosort.spikedetect INFO     Detecting spikes...
-2026-04-21 17:25:11,774 kilosort.spikedetect DEBUG     
-2026-04-21 17:25:11,774 kilosort.spikedetect DEBUG    Batch 0 of 1 (0.0%)
-2026-04-21 17:25:11,774 kilosort.spikedetect DEBUG    ********************************************************
-2026-04-21 17:25:11,774 kilosort.spikedetect DEBUG    CPU usage:    30.00 %
-2026-04-21 17:25:11,774 kilosort.spikedetect DEBUG    Mem used:     94.80 %     |      29.86 GB
-2026-04-21 17:25:11,774 kilosort.spikedetect DEBUG    Mem avail:     1.65 / 31.51 GB
-2026-04-21 17:25:11,774 kilosort.spikedetect DEBUG    ------------------------------------------------------
-2026-04-21 17:25:11,774 kilosort.spikedetect DEBUG    GPU usage:    N/A
-2026-04-21 17:25:11,774 kilosort.spikedetect DEBUG    GPU memory:   N/A
-2026-04-21 17:25:11,774 kilosort.spikedetect DEBUG    ********************************************************
-2026-04-21 17:25:25,294 kilosort.spikedetect DEBUG     
-2026-04-21 17:25:25,294 kilosort.spikedetect DEBUG    Batch 1 of 1 (50.0%)
-2026-04-21 17:25:25,294 kilosort.spikedetect DEBUG    ********************************************************
-2026-04-21 17:25:25,294 kilosort.spikedetect DEBUG    CPU usage:    81.80 %
-2026-04-21 17:25:25,294 kilosort.spikedetect DEBUG    Mem used:     97.80 %     |      30.82 GB
-2026-04-21 17:25:25,295 kilosort.spikedetect DEBUG    Mem avail:     0.68 / 31.51 GB
-2026-04-21 17:25:25,295 kilosort.spikedetect DEBUG    ------------------------------------------------------
-2026-04-21 17:25:25,295 kilosort.spikedetect DEBUG    GPU usage:    N/A
-2026-04-21 17:25:25,295 kilosort.spikedetect DEBUG    GPU memory:   N/A
-2026-04-21 17:25:25,295 kilosort.spikedetect DEBUG    ********************************************************
-2026-04-21 17:25:25,393 kilosort.run_kilosort INFO     drift computed in 20.53s; total 21.42s
-2026-04-21 17:25:25,393 kilosort.run_kilosort DEBUG    st shape: (5072, 6)
-2026-04-21 17:25:25,393 kilosort.run_kilosort DEBUG    yblk shape: (1,)
-2026-04-21 17:25:25,393 kilosort.run_kilosort DEBUG    dshift shape: (2, 1)
-2026-04-21 17:25:25,393 kilosort.run_kilosort DEBUG    iKxx shape: torch.Size([384, 384])
-2026-04-21 17:25:25,394 kilosort.run_kilosort INFO      
-2026-04-21 17:25:25,395 kilosort.run_kilosort INFO     Resource usage after drift correction
-2026-04-21 17:25:25,395 kilosort.run_kilosort INFO     ********************************************************
-2026-04-21 17:25:25,395 kilosort.run_kilosort INFO     CPU usage:    100.00 %
-2026-04-21 17:25:25,395 kilosort.run_kilosort INFO     Mem used:     97.70 %     |      30.79 GB
-2026-04-21 17:25:25,395 kilosort.run_kilosort INFO     Mem avail:     0.72 / 31.51 GB
-2026-04-21 17:25:25,395 kilosort.run_kilosort INFO     ------------------------------------------------------
-2026-04-21 17:25:25,395 kilosort.run_kilosort INFO     GPU usage:    N/A
-2026-04-21 17:25:25,395 kilosort.run_kilosort INFO     GPU memory:   N/A
-2026-04-21 17:25:25,395 kilosort.run_kilosort INFO     ********************************************************
-2026-04-21 17:25:26,441 kilosort.run_kilosort INFO      
-2026-04-21 17:25:26,441 kilosort.run_kilosort INFO     Extracting spikes using templates
-2026-04-21 17:25:26,441 kilosort.run_kilosort INFO     ----------------------------------------
-2026-04-21 17:25:26,441 kilosort.spikedetect INFO     Re-computing universal templates from data.
-2026-04-21 17:25:34,228 kilosort.spikedetect INFO     Number of universal templates: 1146
-2026-04-21 17:25:34,391 kilosort.spikedetect INFO     Detecting spikes...
-2026-04-21 17:25:34,396 kilosort.spikedetect DEBUG     
-2026-04-21 17:25:34,396 kilosort.spikedetect DEBUG    Batch 0 of 1 (0.0%)
-2026-04-21 17:25:34,396 kilosort.spikedetect DEBUG    ********************************************************
-2026-04-21 17:25:34,396 kilosort.spikedetect DEBUG    CPU usage:    32.40 %
-2026-04-21 17:25:34,396 kilosort.spikedetect DEBUG    Mem used:     97.40 %     |      30.68 GB
-2026-04-21 17:25:34,396 kilosort.spikedetect DEBUG    Mem avail:     0.83 / 31.51 GB
-2026-04-21 17:25:34,396 kilosort.spikedetect DEBUG    ------------------------------------------------------
-2026-04-21 17:25:34,396 kilosort.spikedetect DEBUG    GPU usage:    N/A
-2026-04-21 17:25:34,396 kilosort.spikedetect DEBUG    GPU memory:   N/A
-2026-04-21 17:25:34,396 kilosort.spikedetect DEBUG    ********************************************************
-2026-04-21 17:25:48,015 kilosort.spikedetect DEBUG     
-2026-04-21 17:25:48,015 kilosort.spikedetect DEBUG    Batch 1 of 1 (50.0%)
-2026-04-21 17:25:48,015 kilosort.spikedetect DEBUG    ********************************************************
-2026-04-21 17:25:48,016 kilosort.spikedetect DEBUG    CPU usage:    78.00 %
-2026-04-21 17:25:48,016 kilosort.spikedetect DEBUG    Mem used:     97.40 %     |      30.69 GB
-2026-04-21 17:25:48,016 kilosort.spikedetect DEBUG    Mem avail:     0.82 / 31.51 GB
-2026-04-21 17:25:48,016 kilosort.spikedetect DEBUG    ------------------------------------------------------
-2026-04-21 17:25:48,016 kilosort.spikedetect DEBUG    GPU usage:    N/A
-2026-04-21 17:25:48,016 kilosort.spikedetect DEBUG    GPU memory:   N/A
-2026-04-21 17:25:48,016 kilosort.spikedetect DEBUG    ********************************************************
-2026-04-21 17:25:48,019 kilosort.run_kilosort INFO     4025 spikes extracted in 21.58s; total 44.05s
-2026-04-21 17:25:48,019 kilosort.run_kilosort DEBUG    st0 shape: (4025, 6)
-2026-04-21 17:25:48,019 kilosort.run_kilosort DEBUG    tF shape: torch.Size([4025, 10, 6])
-2026-04-21 17:25:48,020 kilosort.run_kilosort INFO      
-2026-04-21 17:25:48,020 kilosort.run_kilosort INFO     Resource usage after spike detect (univ)
-2026-04-21 17:25:48,020 kilosort.run_kilosort INFO     ********************************************************
-2026-04-21 17:25:48,020 kilosort.run_kilosort INFO     CPU usage:     0.00 %
-2026-04-21 17:25:48,020 kilosort.run_kilosort INFO     Mem used:     97.30 %     |      30.67 GB
-2026-04-21 17:25:48,020 kilosort.run_kilosort INFO     Mem avail:     0.84 / 31.51 GB
-2026-04-21 17:25:48,020 kilosort.run_kilosort INFO     ------------------------------------------------------
-2026-04-21 17:25:48,020 kilosort.run_kilosort INFO     GPU usage:    N/A
-2026-04-21 17:25:48,021 kilosort.run_kilosort INFO     GPU memory:   N/A
-2026-04-21 17:25:48,021 kilosort.run_kilosort INFO     ********************************************************
-2026-04-21 17:25:48,021 kilosort.run_kilosort DEBUG    
-2026-04-21 17:25:48,021 kilosort.run_kilosort DEBUG    --------------------
-2026-04-21 17:25:48,021 kilosort.run_kilosort DEBUG    Process thread count: N/A (linux only)
-2026-04-21 17:25:48,021 kilosort.run_kilosort DEBUG    num torch threads: 16
-2026-04-21 17:25:48,021 kilosort.run_kilosort DEBUG    --------------------
+2026-04-27 18:00:05,469 kilosort.run_kilosort INFO      
+2026-04-27 18:00:05,470 kilosort.run_kilosort INFO     Computing preprocessing variables.
+2026-04-27 18:00:05,470 kilosort.run_kilosort INFO     ----------------------------------------
+2026-04-27 18:00:05,471 kilosort.run_kilosort INFO     N samples: 75000
+2026-04-27 18:00:05,471 kilosort.run_kilosort INFO     N seconds: 2.5
+2026-04-27 18:00:05,471 kilosort.run_kilosort INFO     N batches: 2
+2026-04-27 18:00:05,786 kilosort.run_kilosort INFO     Preprocessing filters computed in 0.32s; total 0.32s
+2026-04-27 18:00:05,786 kilosort.run_kilosort DEBUG    hp_filter shape: torch.Size([30122])
+2026-04-27 18:00:05,787 kilosort.run_kilosort DEBUG    whiten_mat shape: torch.Size([384, 384])
+2026-04-27 18:00:05,964 kilosort.run_kilosort DEBUG    First batch min, max: (np.float32(-458.6556), np.float32(480.1634))
+2026-04-27 18:00:05,965 kilosort.run_kilosort INFO      
+2026-04-27 18:00:05,965 kilosort.run_kilosort INFO     Resource usage after preprocessing
+2026-04-27 18:00:05,965 kilosort.run_kilosort INFO     ********************************************************
+2026-04-27 18:00:05,965 kilosort.run_kilosort INFO     CPU usage:    70.30 %
+2026-04-27 18:00:05,965 kilosort.run_kilosort INFO     Mem used:     28.10 %     |      17.91 GB
+2026-04-27 18:00:05,965 kilosort.run_kilosort INFO     Mem avail:    45.82 / 63.73 GB
+2026-04-27 18:00:05,966 kilosort.run_kilosort INFO     ------------------------------------------------------
+2026-04-27 18:00:05,966 kilosort.run_kilosort INFO     GPU usage:    N/A
+2026-04-27 18:00:05,966 kilosort.run_kilosort INFO     GPU memory:   N/A
+2026-04-27 18:00:05,966 kilosort.run_kilosort INFO     ********************************************************
+2026-04-27 18:00:05,969 kilosort.run_kilosort INFO      
+2026-04-27 18:00:05,969 kilosort.run_kilosort INFO     Computing drift correction.
+2026-04-27 18:00:05,969 kilosort.run_kilosort INFO     ----------------------------------------
+2026-04-27 18:00:05,969 kilosort.spikedetect INFO     Re-computing universal templates from data.
+2026-04-27 18:00:12,343 kilosort.spikedetect INFO     Number of universal templates: 1146
+2026-04-27 18:00:12,499 kilosort.spikedetect INFO     Detecting spikes...
+2026-04-27 18:00:12,502 kilosort.spikedetect DEBUG     
+2026-04-27 18:00:12,502 kilosort.spikedetect DEBUG    Batch 0 of 1 (0.0%)
+2026-04-27 18:00:12,502 kilosort.spikedetect DEBUG    ********************************************************
+2026-04-27 18:00:12,502 kilosort.spikedetect DEBUG    CPU usage:    23.10 %
+2026-04-27 18:00:12,502 kilosort.spikedetect DEBUG    Mem used:     27.90 %     |      17.78 GB
+2026-04-27 18:00:12,502 kilosort.spikedetect DEBUG    Mem avail:    45.95 / 63.73 GB
+2026-04-27 18:00:12,502 kilosort.spikedetect DEBUG    ------------------------------------------------------
+2026-04-27 18:00:12,502 kilosort.spikedetect DEBUG    GPU usage:    N/A
+2026-04-27 18:00:12,502 kilosort.spikedetect DEBUG    GPU memory:   N/A
+2026-04-27 18:00:12,503 kilosort.spikedetect DEBUG    ********************************************************
+2026-04-27 18:00:23,192 kilosort.spikedetect DEBUG     
+2026-04-27 18:00:23,192 kilosort.spikedetect DEBUG    Batch 1 of 1 (50.0%)
+2026-04-27 18:00:23,192 kilosort.spikedetect DEBUG    ********************************************************
+2026-04-27 18:00:23,192 kilosort.spikedetect DEBUG    CPU usage:    73.80 %
+2026-04-27 18:00:23,192 kilosort.spikedetect DEBUG    Mem used:     33.00 %     |      21.05 GB
+2026-04-27 18:00:23,192 kilosort.spikedetect DEBUG    Mem avail:    42.68 / 63.73 GB
+2026-04-27 18:00:23,192 kilosort.spikedetect DEBUG    ------------------------------------------------------
+2026-04-27 18:00:23,192 kilosort.spikedetect DEBUG    GPU usage:    N/A
+2026-04-27 18:00:23,192 kilosort.spikedetect DEBUG    GPU memory:   N/A
+2026-04-27 18:00:23,192 kilosort.spikedetect DEBUG    ********************************************************
+2026-04-27 18:00:23,255 kilosort.run_kilosort INFO     drift computed in 17.29s; total 17.79s
+2026-04-27 18:00:23,255 kilosort.run_kilosort DEBUG    st shape: (5072, 6)
+2026-04-27 18:00:23,255 kilosort.run_kilosort DEBUG    yblk shape: (1,)
+2026-04-27 18:00:23,255 kilosort.run_kilosort DEBUG    dshift shape: (2, 1)
+2026-04-27 18:00:23,255 kilosort.run_kilosort DEBUG    iKxx shape: torch.Size([384, 384])
+2026-04-27 18:00:23,255 kilosort.run_kilosort INFO      
+2026-04-27 18:00:23,256 kilosort.run_kilosort INFO     Resource usage after drift correction
+2026-04-27 18:00:23,256 kilosort.run_kilosort INFO     ********************************************************
+2026-04-27 18:00:23,256 kilosort.run_kilosort INFO     CPU usage:     0.00 %
+2026-04-27 18:00:23,256 kilosort.run_kilosort INFO     Mem used:     33.00 %     |      21.01 GB
+2026-04-27 18:00:23,256 kilosort.run_kilosort INFO     Mem avail:    42.72 / 63.73 GB
+2026-04-27 18:00:23,256 kilosort.run_kilosort INFO     ------------------------------------------------------
+2026-04-27 18:00:23,256 kilosort.run_kilosort INFO     GPU usage:    N/A
+2026-04-27 18:00:23,256 kilosort.run_kilosort INFO     GPU memory:   N/A
+2026-04-27 18:00:23,256 kilosort.run_kilosort INFO     ********************************************************
+2026-04-27 18:00:24,016 kilosort.run_kilosort INFO      
+2026-04-27 18:00:24,016 kilosort.run_kilosort INFO     Extracting spikes using templates
+2026-04-27 18:00:24,016 kilosort.run_kilosort INFO     ----------------------------------------
+2026-04-27 18:00:24,016 kilosort.spikedetect INFO     Re-computing universal templates from data.
+2026-04-27 18:00:30,799 kilosort.spikedetect INFO     Number of universal templates: 1146
+2026-04-27 18:00:30,870 kilosort.spikedetect INFO     Detecting spikes...
+2026-04-27 18:00:30,872 kilosort.spikedetect DEBUG     
+2026-04-27 18:00:30,873 kilosort.spikedetect DEBUG    Batch 0 of 1 (0.0%)
+2026-04-27 18:00:30,873 kilosort.spikedetect DEBUG    ********************************************************
+2026-04-27 18:00:30,873 kilosort.spikedetect DEBUG    CPU usage:    26.80 %
+2026-04-27 18:00:30,873 kilosort.spikedetect DEBUG    Mem used:     33.50 %     |      21.36 GB
+2026-04-27 18:00:30,873 kilosort.spikedetect DEBUG    Mem avail:    42.37 / 63.73 GB
+2026-04-27 18:00:30,873 kilosort.spikedetect DEBUG    ------------------------------------------------------
+2026-04-27 18:00:30,873 kilosort.spikedetect DEBUG    GPU usage:    N/A
+2026-04-27 18:00:30,873 kilosort.spikedetect DEBUG    GPU memory:   N/A
+2026-04-27 18:00:30,873 kilosort.spikedetect DEBUG    ********************************************************
+2026-04-27 18:00:42,390 kilosort.spikedetect DEBUG     
+2026-04-27 18:00:42,390 kilosort.spikedetect DEBUG    Batch 1 of 1 (50.0%)
+2026-04-27 18:00:42,390 kilosort.spikedetect DEBUG    ********************************************************
+2026-04-27 18:00:42,390 kilosort.spikedetect DEBUG    CPU usage:    73.00 %
+2026-04-27 18:00:42,390 kilosort.spikedetect DEBUG    Mem used:     33.50 %     |      21.35 GB
+2026-04-27 18:00:42,390 kilosort.spikedetect DEBUG    Mem avail:    42.38 / 63.73 GB
+2026-04-27 18:00:42,390 kilosort.spikedetect DEBUG    ------------------------------------------------------
+2026-04-27 18:00:42,390 kilosort.spikedetect DEBUG    GPU usage:    N/A
+2026-04-27 18:00:42,390 kilosort.spikedetect DEBUG    GPU memory:   N/A
+2026-04-27 18:00:42,390 kilosort.spikedetect DEBUG    ********************************************************
+2026-04-27 18:00:42,392 kilosort.run_kilosort INFO     4025 spikes extracted in 18.38s; total 36.92s
+2026-04-27 18:00:42,392 kilosort.run_kilosort DEBUG    st0 shape: (4025, 6)
+2026-04-27 18:00:42,392 kilosort.run_kilosort DEBUG    tF shape: torch.Size([4025, 10, 6])
+2026-04-27 18:00:42,393 kilosort.run_kilosort INFO      
+2026-04-27 18:00:42,393 kilosort.run_kilosort INFO     Resource usage after spike detect (univ)
+2026-04-27 18:00:42,393 kilosort.run_kilosort INFO     ********************************************************
+2026-04-27 18:00:42,393 kilosort.run_kilosort INFO     CPU usage:     0.00 %
+2026-04-27 18:00:42,393 kilosort.run_kilosort INFO     Mem used:     33.50 %     |      21.33 GB
+2026-04-27 18:00:42,393 kilosort.run_kilosort INFO     Mem avail:    42.40 / 63.73 GB
+2026-04-27 18:00:42,394 kilosort.run_kilosort INFO     ------------------------------------------------------
+2026-04-27 18:00:42,394 kilosort.run_kilosort INFO     GPU usage:    N/A
+2026-04-27 18:00:42,394 kilosort.run_kilosort INFO     GPU memory:   N/A
+2026-04-27 18:00:42,394 kilosort.run_kilosort INFO     ********************************************************
+2026-04-27 18:00:42,394 kilosort.run_kilosort DEBUG    
+2026-04-27 18:00:42,394 kilosort.run_kilosort DEBUG    --------------------
+2026-04-27 18:00:42,394 kilosort.run_kilosort DEBUG    Process thread count: N/A (linux only)
+2026-04-27 18:00:42,394 kilosort.run_kilosort DEBUG    num torch threads: 16
+2026-04-27 18:00:42,394 kilosort.run_kilosort DEBUG    --------------------
 
-2026-04-21 17:25:48,021 kilosort.run_kilosort INFO      
-2026-04-21 17:25:48,021 kilosort.run_kilosort INFO     First clustering
-2026-04-21 17:25:48,021 kilosort.run_kilosort INFO     ----------------------------------------
-2026-04-21 17:25:48,056 kilosort.clustering_qr DEBUG    Center 0 | Xd shape: torch.Size([36, 60]) | ntemp: 12
-2026-04-21 17:25:48,064 kilosort.clustering_qr DEBUG    Center 1 | Xd shape: torch.Size([17, 84]) | ntemp: 12
-2026-04-21 17:25:48,066 kilosort.clustering_qr DEBUG    Center 2 | Xd shape: torch.Size([6, 84]) | ntemp: 12
-2026-04-21 17:25:48,067 kilosort.clustering_qr DEBUG    Center 3 | Xd shape: torch.Size([17, 84]) | ntemp: 12
-2026-04-21 17:25:48,067 kilosort.clustering_qr DEBUG    Center 4 | Xd shape: torch.Size([16, 84]) | ntemp: 12
-2026-04-21 17:25:48,069 kilosort.clustering_qr DEBUG    Center 5 | Xd shape: torch.Size([13, 84]) | ntemp: 12
-2026-04-21 17:25:48,070 kilosort.clustering_qr DEBUG    Center 6 | Xd shape: torch.Size([18, 84]) | ntemp: 12
-2026-04-21 17:25:48,071 kilosort.clustering_qr DEBUG    Center 7 | Xd shape: torch.Size([33, 84]) | ntemp: 12
-2026-04-21 17:25:48,072 kilosort.clustering_qr DEBUG    Center 8 | Xd shape: torch.Size([154, 84]) | ntemp: 12
-2026-04-21 17:25:48,073 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:48,074 kilosort.clustering_qr DEBUG    Cluster center: 9 (10/96)
-2026-04-21 17:25:48,074 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,074 kilosort.clustering_qr DEBUG    CPU usage:    84.60 %
-2026-04-21 17:25:48,074 kilosort.clustering_qr DEBUG    Mem used:     97.30 %     |      30.65 GB
-2026-04-21 17:25:48,074 kilosort.clustering_qr DEBUG    Mem avail:     0.86 / 31.51 GB
-2026-04-21 17:25:48,074 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:48,074 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:48,074 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:48,074 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,075 kilosort.clustering_qr DEBUG    Center 9 | Xd shape: torch.Size([24, 84]) | ntemp: 12
-2026-04-21 17:25:48,076 kilosort.clustering_qr DEBUG    Center 10 | Xd shape: torch.Size([18, 84]) | ntemp: 12
-2026-04-21 17:25:48,077 kilosort.clustering_qr DEBUG    Center 11 | Xd shape: torch.Size([52, 84]) | ntemp: 12
-2026-04-21 17:25:48,078 kilosort.clustering_qr DEBUG    Center 12 | Xd shape: torch.Size([23, 84]) | ntemp: 12
-2026-04-21 17:25:48,079 kilosort.clustering_qr DEBUG    Center 13 | Xd shape: torch.Size([18, 84]) | ntemp: 12
-2026-04-21 17:25:48,080 kilosort.clustering_qr DEBUG    Center 14 | Xd shape: torch.Size([40, 84]) | ntemp: 12
-2026-04-21 17:25:48,081 kilosort.clustering_qr DEBUG    Center 15 | Xd shape: torch.Size([23, 84]) | ntemp: 12
-2026-04-21 17:25:48,082 kilosort.clustering_qr DEBUG    Center 16 | Xd shape: torch.Size([36, 84]) | ntemp: 12
-2026-04-21 17:25:48,083 kilosort.clustering_qr DEBUG    Center 17 | Xd shape: torch.Size([25, 84]) | ntemp: 12
-2026-04-21 17:25:48,084 kilosort.clustering_qr DEBUG    Center 18 | Xd shape: torch.Size([24, 84]) | ntemp: 12
-2026-04-21 17:25:48,085 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:48,085 kilosort.clustering_qr DEBUG    Cluster center: 19 (20/96)
-2026-04-21 17:25:48,085 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,085 kilosort.clustering_qr DEBUG    CPU usage:    76.20 %
-2026-04-21 17:25:48,085 kilosort.clustering_qr DEBUG    Mem used:     97.30 %     |      30.65 GB
-2026-04-21 17:25:48,085 kilosort.clustering_qr DEBUG    Mem avail:     0.86 / 31.51 GB
-2026-04-21 17:25:48,085 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:48,085 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:48,085 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:48,086 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,086 kilosort.clustering_qr DEBUG    Center 19 | Xd shape: torch.Size([21, 84]) | ntemp: 12
-2026-04-21 17:25:48,087 kilosort.clustering_qr DEBUG    Center 20 | Xd shape: torch.Size([62, 84]) | ntemp: 12
-2026-04-21 17:25:48,088 kilosort.clustering_qr DEBUG    Center 21 | Xd shape: torch.Size([22, 84]) | ntemp: 12
-2026-04-21 17:25:48,089 kilosort.clustering_qr DEBUG    Center 22 | Xd shape: torch.Size([24, 84]) | ntemp: 12
-2026-04-21 17:25:48,090 kilosort.clustering_qr DEBUG    Center 23 | Xd shape: torch.Size([51, 84]) | ntemp: 12
-2026-04-21 17:25:48,091 kilosort.clustering_qr DEBUG    Center 24 | Xd shape: torch.Size([32, 84]) | ntemp: 12
-2026-04-21 17:25:48,092 kilosort.clustering_qr DEBUG    Center 25 | Xd shape: torch.Size([36, 84]) | ntemp: 12
-2026-04-21 17:25:48,093 kilosort.clustering_qr DEBUG    Center 26 | Xd shape: torch.Size([21, 84]) | ntemp: 12
-2026-04-21 17:25:48,094 kilosort.clustering_qr DEBUG    Center 27 | Xd shape: torch.Size([23, 84]) | ntemp: 12
-2026-04-21 17:25:48,095 kilosort.clustering_qr DEBUG    Center 28 | Xd shape: torch.Size([36, 84]) | ntemp: 12
-2026-04-21 17:25:48,097 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:48,097 kilosort.clustering_qr DEBUG    Cluster center: 29 (30/96)
-2026-04-21 17:25:48,097 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,097 kilosort.clustering_qr DEBUG    CPU usage:    84.20 %
-2026-04-21 17:25:48,097 kilosort.clustering_qr DEBUG    Mem used:     97.30 %     |      30.65 GB
-2026-04-21 17:25:48,097 kilosort.clustering_qr DEBUG    Mem avail:     0.86 / 31.51 GB
-2026-04-21 17:25:48,097 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:48,097 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:48,097 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:48,097 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,098 kilosort.clustering_qr DEBUG    Center 29 | Xd shape: torch.Size([46, 84]) | ntemp: 12
-2026-04-21 17:25:48,100 kilosort.clustering_qr DEBUG    Center 30 | Xd shape: torch.Size([30, 84]) | ntemp: 12
-2026-04-21 17:25:48,102 kilosort.clustering_qr DEBUG    Center 31 | Xd shape: torch.Size([46, 84]) | ntemp: 12
-2026-04-21 17:25:48,103 kilosort.clustering_qr DEBUG    Center 32 | Xd shape: torch.Size([23, 84]) | ntemp: 12
-2026-04-21 17:25:48,104 kilosort.clustering_qr DEBUG    Center 33 | Xd shape: torch.Size([47, 84]) | ntemp: 12
-2026-04-21 17:25:48,106 kilosort.clustering_qr DEBUG    Center 34 | Xd shape: torch.Size([134, 84]) | ntemp: 12
-2026-04-21 17:25:48,107 kilosort.clustering_qr DEBUG    Center 35 | Xd shape: torch.Size([122, 84]) | ntemp: 12
-2026-04-21 17:25:48,108 kilosort.clustering_qr DEBUG    Center 36 | Xd shape: torch.Size([75, 84]) | ntemp: 12
-2026-04-21 17:25:48,109 kilosort.clustering_qr DEBUG    Center 37 | Xd shape: torch.Size([57, 84]) | ntemp: 12
-2026-04-21 17:25:48,110 kilosort.clustering_qr DEBUG    Center 38 | Xd shape: torch.Size([61, 84]) | ntemp: 12
-2026-04-21 17:25:48,112 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:48,112 kilosort.clustering_qr DEBUG    Cluster center: 39 (40/96)
-2026-04-21 17:25:48,112 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,112 kilosort.clustering_qr DEBUG    CPU usage:    72.70 %
-2026-04-21 17:25:48,112 kilosort.clustering_qr DEBUG    Mem used:     97.30 %     |      30.65 GB
-2026-04-21 17:25:48,112 kilosort.clustering_qr DEBUG    Mem avail:     0.86 / 31.51 GB
-2026-04-21 17:25:48,112 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:48,112 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:48,112 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:48,112 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,113 kilosort.clustering_qr DEBUG    Center 39 | Xd shape: torch.Size([51, 84]) | ntemp: 12
-2026-04-21 17:25:48,115 kilosort.clustering_qr DEBUG    Center 40 | Xd shape: torch.Size([70, 84]) | ntemp: 12
-2026-04-21 17:25:48,116 kilosort.clustering_qr DEBUG    Center 41 | Xd shape: torch.Size([38, 84]) | ntemp: 12
-2026-04-21 17:25:48,118 kilosort.clustering_qr DEBUG    Center 42 | Xd shape: torch.Size([50, 84]) | ntemp: 12
-2026-04-21 17:25:48,120 kilosort.clustering_qr DEBUG    Center 43 | Xd shape: torch.Size([36, 84]) | ntemp: 12
-2026-04-21 17:25:48,121 kilosort.clustering_qr DEBUG    Center 44 | Xd shape: torch.Size([32, 84]) | ntemp: 12
-2026-04-21 17:25:48,122 kilosort.clustering_qr DEBUG    Center 45 | Xd shape: torch.Size([29, 84]) | ntemp: 12
-2026-04-21 17:25:48,123 kilosort.clustering_qr DEBUG    Center 46 | Xd shape: torch.Size([48, 72]) | ntemp: 12
-2026-04-21 17:25:48,124 kilosort.clustering_qr DEBUG    Center 47 | Xd shape: torch.Size([38, 60]) | ntemp: 9
-2026-04-21 17:25:48,127 kilosort.clustering_qr DEBUG    Center 48 | Xd shape: torch.Size([20, 60]) | ntemp: 12
-2026-04-21 17:25:48,129 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:48,129 kilosort.clustering_qr DEBUG    Cluster center: 49 (50/96)
-2026-04-21 17:25:48,129 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,129 kilosort.clustering_qr DEBUG    CPU usage:    76.00 %
-2026-04-21 17:25:48,129 kilosort.clustering_qr DEBUG    Mem used:     97.20 %     |      30.63 GB
-2026-04-21 17:25:48,129 kilosort.clustering_qr DEBUG    Mem avail:     0.87 / 31.51 GB
-2026-04-21 17:25:48,129 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:48,129 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:48,129 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:48,129 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,131 kilosort.clustering_qr DEBUG    Center 49 | Xd shape: torch.Size([24, 84]) | ntemp: 12
-2026-04-21 17:25:48,132 kilosort.clustering_qr DEBUG    Center 50 | Xd shape: torch.Size([12, 84]) | ntemp: 12
-2026-04-21 17:25:48,134 kilosort.clustering_qr DEBUG    Center 51 | Xd shape: torch.Size([13, 84]) | ntemp: 12
-2026-04-21 17:25:48,135 kilosort.clustering_qr DEBUG    Center 52 | Xd shape: torch.Size([15, 84]) | ntemp: 12
-2026-04-21 17:25:48,137 kilosort.clustering_qr DEBUG    Center 53 | Xd shape: torch.Size([10, 84]) | ntemp: 12
-2026-04-21 17:25:48,138 kilosort.clustering_qr DEBUG    Center 54 | Xd shape: torch.Size([59, 84]) | ntemp: 12
-2026-04-21 17:25:48,140 kilosort.clustering_qr DEBUG    Center 55 | Xd shape: torch.Size([49, 84]) | ntemp: 12
-2026-04-21 17:25:48,140 kilosort.clustering_qr DEBUG    Center 56 | Xd shape: torch.Size([41, 84]) | ntemp: 12
-2026-04-21 17:25:48,141 kilosort.clustering_qr DEBUG    Center 57 | Xd shape: torch.Size([13, 84]) | ntemp: 12
-2026-04-21 17:25:48,143 kilosort.clustering_qr DEBUG    Center 58 | Xd shape: torch.Size([32, 84]) | ntemp: 12
-2026-04-21 17:25:48,144 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:48,144 kilosort.clustering_qr DEBUG    Cluster center: 59 (60/96)
-2026-04-21 17:25:48,144 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,144 kilosort.clustering_qr DEBUG    CPU usage:    91.30 %
-2026-04-21 17:25:48,144 kilosort.clustering_qr DEBUG    Mem used:     97.20 %     |      30.63 GB
-2026-04-21 17:25:48,144 kilosort.clustering_qr DEBUG    Mem avail:     0.87 / 31.51 GB
-2026-04-21 17:25:48,144 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:48,144 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:48,144 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:48,145 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,145 kilosort.clustering_qr DEBUG    Center 59 | Xd shape: torch.Size([33, 84]) | ntemp: 12
-2026-04-21 17:25:48,146 kilosort.clustering_qr DEBUG    Center 60 | Xd shape: torch.Size([37, 84]) | ntemp: 12
-2026-04-21 17:25:48,147 kilosort.clustering_qr DEBUG    Center 61 | Xd shape: torch.Size([32, 84]) | ntemp: 12
-2026-04-21 17:25:48,148 kilosort.clustering_qr DEBUG    Center 62 | Xd shape: torch.Size([95, 84]) | ntemp: 12
-2026-04-21 17:25:48,150 kilosort.clustering_qr DEBUG    Center 63 | Xd shape: torch.Size([102, 84]) | ntemp: 12
-2026-04-21 17:25:48,151 kilosort.clustering_qr DEBUG    Center 64 | Xd shape: torch.Size([39, 84]) | ntemp: 12
-2026-04-21 17:25:48,152 kilosort.clustering_qr DEBUG    Center 65 | Xd shape: torch.Size([57, 84]) | ntemp: 12
-2026-04-21 17:25:48,153 kilosort.clustering_qr DEBUG    Center 66 | Xd shape: torch.Size([48, 84]) | ntemp: 12
-2026-04-21 17:25:48,154 kilosort.clustering_qr DEBUG    Center 67 | Xd shape: torch.Size([42, 84]) | ntemp: 12
-2026-04-21 17:25:48,155 kilosort.clustering_qr DEBUG    Center 68 | Xd shape: torch.Size([34, 84]) | ntemp: 12
-2026-04-21 17:25:48,156 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:48,156 kilosort.clustering_qr DEBUG    Cluster center: 69 (70/96)
-2026-04-21 17:25:48,156 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,156 kilosort.clustering_qr DEBUG    CPU usage:     0.00 %
-2026-04-21 17:25:48,156 kilosort.clustering_qr DEBUG    Mem used:     97.20 %     |      30.63 GB
-2026-04-21 17:25:48,157 kilosort.clustering_qr DEBUG    Mem avail:     0.87 / 31.51 GB
-2026-04-21 17:25:48,157 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:48,157 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:48,157 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:48,157 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,157 kilosort.clustering_qr DEBUG    Center 69 | Xd shape: torch.Size([128, 84]) | ntemp: 12
-2026-04-21 17:25:48,159 kilosort.clustering_qr DEBUG    Center 70 | Xd shape: torch.Size([99, 84]) | ntemp: 12
-2026-04-21 17:25:48,159 kilosort.clustering_qr DEBUG    Center 71 | Xd shape: torch.Size([47, 84]) | ntemp: 12
-2026-04-21 17:25:48,160 kilosort.clustering_qr DEBUG    Center 72 | Xd shape: torch.Size([58, 84]) | ntemp: 12
-2026-04-21 17:25:48,161 kilosort.clustering_qr DEBUG    Center 73 | Xd shape: torch.Size([52, 84]) | ntemp: 12
-2026-04-21 17:25:48,162 kilosort.clustering_qr DEBUG    Center 74 | Xd shape: torch.Size([46, 84]) | ntemp: 12
-2026-04-21 17:25:48,163 kilosort.clustering_qr DEBUG    Center 75 | Xd shape: torch.Size([43, 84]) | ntemp: 12
-2026-04-21 17:25:48,164 kilosort.clustering_qr DEBUG    Center 76 | Xd shape: torch.Size([66, 84]) | ntemp: 12
-2026-04-21 17:25:48,165 kilosort.clustering_qr DEBUG    Center 77 | Xd shape: torch.Size([37, 84]) | ntemp: 12
-2026-04-21 17:25:48,165 kilosort.clustering_qr DEBUG    Center 78 | Xd shape: torch.Size([30, 84]) | ntemp: 12
-2026-04-21 17:25:48,166 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:48,166 kilosort.clustering_qr DEBUG    Cluster center: 79 (80/96)
-2026-04-21 17:25:48,166 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,166 kilosort.clustering_qr DEBUG    CPU usage:    72.70 %
-2026-04-21 17:25:48,166 kilosort.clustering_qr DEBUG    Mem used:     97.20 %     |      30.63 GB
-2026-04-21 17:25:48,167 kilosort.clustering_qr DEBUG    Mem avail:     0.87 / 31.51 GB
-2026-04-21 17:25:48,167 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:48,167 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:48,167 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:48,167 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,168 kilosort.clustering_qr DEBUG    Center 79 | Xd shape: torch.Size([26, 84]) | ntemp: 12
-2026-04-21 17:25:48,169 kilosort.clustering_qr DEBUG    Center 80 | Xd shape: torch.Size([26, 84]) | ntemp: 12
-2026-04-21 17:25:48,171 kilosort.clustering_qr DEBUG    Center 81 | Xd shape: torch.Size([45, 84]) | ntemp: 12
-2026-04-21 17:25:48,172 kilosort.clustering_qr DEBUG    Center 82 | Xd shape: torch.Size([31, 84]) | ntemp: 12
-2026-04-21 17:25:48,173 kilosort.clustering_qr DEBUG    Center 83 | Xd shape: torch.Size([26, 84]) | ntemp: 12
-2026-04-21 17:25:48,174 kilosort.clustering_qr DEBUG    Center 84 | Xd shape: torch.Size([28, 84]) | ntemp: 12
-2026-04-21 17:25:48,175 kilosort.clustering_qr DEBUG    Center 85 | Xd shape: torch.Size([31, 84]) | ntemp: 12
-2026-04-21 17:25:48,176 kilosort.clustering_qr DEBUG    Center 86 | Xd shape: torch.Size([59, 84]) | ntemp: 12
-2026-04-21 17:25:48,177 kilosort.clustering_qr DEBUG    Center 87 | Xd shape: torch.Size([25, 84]) | ntemp: 12
-2026-04-21 17:25:48,178 kilosort.clustering_qr DEBUG    Center 88 | Xd shape: torch.Size([75, 84]) | ntemp: 12
-2026-04-21 17:25:48,179 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:48,179 kilosort.clustering_qr DEBUG    Cluster center: 89 (90/96)
-2026-04-21 17:25:48,179 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,179 kilosort.clustering_qr DEBUG    CPU usage:    76.20 %
-2026-04-21 17:25:48,180 kilosort.clustering_qr DEBUG    Mem used:     97.20 %     |      30.63 GB
-2026-04-21 17:25:48,180 kilosort.clustering_qr DEBUG    Mem avail:     0.87 / 31.51 GB
-2026-04-21 17:25:48,180 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:48,180 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:48,180 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:48,180 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:48,181 kilosort.clustering_qr DEBUG    Center 89 | Xd shape: torch.Size([42, 84]) | ntemp: 12
-2026-04-21 17:25:48,183 kilosort.clustering_qr DEBUG    Center 90 | Xd shape: torch.Size([39, 84]) | ntemp: 12
-2026-04-21 17:25:48,184 kilosort.clustering_qr DEBUG    Center 91 | Xd shape: torch.Size([67, 84]) | ntemp: 12
-2026-04-21 17:25:48,186 kilosort.clustering_qr DEBUG    Center 92 | Xd shape: torch.Size([34, 84]) | ntemp: 12
-2026-04-21 17:25:48,186 kilosort.clustering_qr DEBUG    Center 93 | Xd shape: torch.Size([34, 84]) | ntemp: 12
-2026-04-21 17:25:48,187 kilosort.clustering_qr DEBUG    Center 94 | Xd shape: torch.Size([34, 72]) | ntemp: 12
-2026-04-21 17:25:48,188 kilosort.clustering_qr DEBUG    Center 95 | Xd shape: torch.Size([36, 60]) | ntemp: 9
-2026-04-21 17:25:48,293 kilosort.run_kilosort INFO     96 clusters found, in 0.27s; total 44.32s
-2026-04-21 17:25:48,293 kilosort.run_kilosort DEBUG    clu shape: (4025,)
-2026-04-21 17:25:48,293 kilosort.run_kilosort DEBUG    Wall shape: torch.Size([96, 384, 6])
-2026-04-21 17:25:48,295 kilosort.run_kilosort INFO      
-2026-04-21 17:25:48,295 kilosort.run_kilosort INFO     Resource usage after first clustering
-2026-04-21 17:25:48,295 kilosort.run_kilosort INFO     ********************************************************
-2026-04-21 17:25:48,295 kilosort.run_kilosort INFO     CPU usage:     0.00 %
-2026-04-21 17:25:48,295 kilosort.run_kilosort INFO     Mem used:     97.40 %     |      30.69 GB
-2026-04-21 17:25:48,295 kilosort.run_kilosort INFO     Mem avail:     0.82 / 31.51 GB
-2026-04-21 17:25:48,295 kilosort.run_kilosort INFO     ------------------------------------------------------
-2026-04-21 17:25:48,295 kilosort.run_kilosort INFO     GPU usage:    N/A
-2026-04-21 17:25:48,295 kilosort.run_kilosort INFO     GPU memory:   N/A
-2026-04-21 17:25:48,295 kilosort.run_kilosort INFO     ********************************************************
-2026-04-21 17:25:48,295 kilosort.run_kilosort DEBUG    
-2026-04-21 17:25:48,295 kilosort.run_kilosort DEBUG    --------------------
-2026-04-21 17:25:48,295 kilosort.run_kilosort DEBUG    Process thread count: N/A (linux only)
-2026-04-21 17:25:48,295 kilosort.run_kilosort DEBUG    num torch threads: 16
-2026-04-21 17:25:48,295 kilosort.run_kilosort DEBUG    --------------------
+2026-04-27 18:00:42,394 kilosort.run_kilosort INFO      
+2026-04-27 18:00:42,394 kilosort.run_kilosort INFO     First clustering
+2026-04-27 18:00:42,394 kilosort.run_kilosort INFO     ----------------------------------------
+2026-04-27 18:00:42,400 kilosort.clustering_qr DEBUG    Center 0 | Xd shape: torch.Size([36, 60]) | ntemp: 12
+2026-04-27 18:00:42,402 kilosort.clustering_qr DEBUG    Center 1 | Xd shape: torch.Size([17, 84]) | ntemp: 12
+2026-04-27 18:00:42,403 kilosort.clustering_qr DEBUG    Center 2 | Xd shape: torch.Size([6, 84]) | ntemp: 12
+2026-04-27 18:00:42,405 kilosort.clustering_qr DEBUG    Center 3 | Xd shape: torch.Size([17, 84]) | ntemp: 12
+2026-04-27 18:00:42,406 kilosort.clustering_qr DEBUG    Center 4 | Xd shape: torch.Size([16, 84]) | ntemp: 12
+2026-04-27 18:00:42,407 kilosort.clustering_qr DEBUG    Center 5 | Xd shape: torch.Size([13, 84]) | ntemp: 12
+2026-04-27 18:00:42,409 kilosort.clustering_qr DEBUG    Center 6 | Xd shape: torch.Size([18, 84]) | ntemp: 12
+2026-04-27 18:00:42,410 kilosort.clustering_qr DEBUG    Center 7 | Xd shape: torch.Size([33, 84]) | ntemp: 12
+2026-04-27 18:00:42,412 kilosort.clustering_qr DEBUG    Center 8 | Xd shape: torch.Size([154, 84]) | ntemp: 12
+2026-04-27 18:00:42,413 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:42,413 kilosort.clustering_qr DEBUG    Cluster center: 9 (10/96)
+2026-04-27 18:00:42,413 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,413 kilosort.clustering_qr DEBUG    CPU usage:    91.70 %
+2026-04-27 18:00:42,413 kilosort.clustering_qr DEBUG    Mem used:     33.50 %     |      21.33 GB
+2026-04-27 18:00:42,413 kilosort.clustering_qr DEBUG    Mem avail:    42.39 / 63.73 GB
+2026-04-27 18:00:42,413 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:42,413 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:42,414 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:42,414 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,415 kilosort.clustering_qr DEBUG    Center 9 | Xd shape: torch.Size([24, 84]) | ntemp: 12
+2026-04-27 18:00:42,416 kilosort.clustering_qr DEBUG    Center 10 | Xd shape: torch.Size([18, 84]) | ntemp: 12
+2026-04-27 18:00:42,418 kilosort.clustering_qr DEBUG    Center 11 | Xd shape: torch.Size([52, 84]) | ntemp: 12
+2026-04-27 18:00:42,419 kilosort.clustering_qr DEBUG    Center 12 | Xd shape: torch.Size([23, 84]) | ntemp: 12
+2026-04-27 18:00:42,421 kilosort.clustering_qr DEBUG    Center 13 | Xd shape: torch.Size([18, 84]) | ntemp: 12
+2026-04-27 18:00:42,422 kilosort.clustering_qr DEBUG    Center 14 | Xd shape: torch.Size([40, 84]) | ntemp: 12
+2026-04-27 18:00:42,424 kilosort.clustering_qr DEBUG    Center 15 | Xd shape: torch.Size([23, 84]) | ntemp: 12
+2026-04-27 18:00:42,425 kilosort.clustering_qr DEBUG    Center 16 | Xd shape: torch.Size([36, 84]) | ntemp: 12
+2026-04-27 18:00:42,426 kilosort.clustering_qr DEBUG    Center 17 | Xd shape: torch.Size([25, 84]) | ntemp: 12
+2026-04-27 18:00:42,428 kilosort.clustering_qr DEBUG    Center 18 | Xd shape: torch.Size([24, 84]) | ntemp: 12
+2026-04-27 18:00:42,429 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:42,429 kilosort.clustering_qr DEBUG    Cluster center: 19 (20/96)
+2026-04-27 18:00:42,429 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,429 kilosort.clustering_qr DEBUG    CPU usage:    70.80 %
+2026-04-27 18:00:42,429 kilosort.clustering_qr DEBUG    Mem used:     33.50 %     |      21.33 GB
+2026-04-27 18:00:42,429 kilosort.clustering_qr DEBUG    Mem avail:    42.39 / 63.73 GB
+2026-04-27 18:00:42,429 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:42,429 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:42,429 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:42,429 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,431 kilosort.clustering_qr DEBUG    Center 19 | Xd shape: torch.Size([21, 84]) | ntemp: 12
+2026-04-27 18:00:42,432 kilosort.clustering_qr DEBUG    Center 20 | Xd shape: torch.Size([62, 84]) | ntemp: 12
+2026-04-27 18:00:42,434 kilosort.clustering_qr DEBUG    Center 21 | Xd shape: torch.Size([22, 84]) | ntemp: 12
+2026-04-27 18:00:42,435 kilosort.clustering_qr DEBUG    Center 22 | Xd shape: torch.Size([24, 84]) | ntemp: 12
+2026-04-27 18:00:42,436 kilosort.clustering_qr DEBUG    Center 23 | Xd shape: torch.Size([51, 84]) | ntemp: 12
+2026-04-27 18:00:42,438 kilosort.clustering_qr DEBUG    Center 24 | Xd shape: torch.Size([32, 84]) | ntemp: 12
+2026-04-27 18:00:42,440 kilosort.clustering_qr DEBUG    Center 25 | Xd shape: torch.Size([36, 84]) | ntemp: 12
+2026-04-27 18:00:42,441 kilosort.clustering_qr DEBUG    Center 26 | Xd shape: torch.Size([21, 84]) | ntemp: 12
+2026-04-27 18:00:42,442 kilosort.clustering_qr DEBUG    Center 27 | Xd shape: torch.Size([23, 84]) | ntemp: 12
+2026-04-27 18:00:42,444 kilosort.clustering_qr DEBUG    Center 28 | Xd shape: torch.Size([36, 84]) | ntemp: 12
+2026-04-27 18:00:42,445 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:42,445 kilosort.clustering_qr DEBUG    Cluster center: 29 (30/96)
+2026-04-27 18:00:42,445 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,445 kilosort.clustering_qr DEBUG    CPU usage:    70.80 %
+2026-04-27 18:00:42,445 kilosort.clustering_qr DEBUG    Mem used:     33.50 %     |      21.33 GB
+2026-04-27 18:00:42,445 kilosort.clustering_qr DEBUG    Mem avail:    42.39 / 63.73 GB
+2026-04-27 18:00:42,445 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:42,445 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:42,445 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:42,445 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,446 kilosort.clustering_qr DEBUG    Center 29 | Xd shape: torch.Size([46, 84]) | ntemp: 12
+2026-04-27 18:00:42,448 kilosort.clustering_qr DEBUG    Center 30 | Xd shape: torch.Size([30, 84]) | ntemp: 12
+2026-04-27 18:00:42,449 kilosort.clustering_qr DEBUG    Center 31 | Xd shape: torch.Size([46, 84]) | ntemp: 12
+2026-04-27 18:00:42,451 kilosort.clustering_qr DEBUG    Center 32 | Xd shape: torch.Size([23, 84]) | ntemp: 12
+2026-04-27 18:00:42,452 kilosort.clustering_qr DEBUG    Center 33 | Xd shape: torch.Size([47, 84]) | ntemp: 12
+2026-04-27 18:00:42,454 kilosort.clustering_qr DEBUG    Center 34 | Xd shape: torch.Size([134, 84]) | ntemp: 12
+2026-04-27 18:00:42,455 kilosort.clustering_qr DEBUG    Center 35 | Xd shape: torch.Size([122, 84]) | ntemp: 12
+2026-04-27 18:00:42,457 kilosort.clustering_qr DEBUG    Center 36 | Xd shape: torch.Size([75, 84]) | ntemp: 12
+2026-04-27 18:00:42,458 kilosort.clustering_qr DEBUG    Center 37 | Xd shape: torch.Size([57, 84]) | ntemp: 12
+2026-04-27 18:00:42,460 kilosort.clustering_qr DEBUG    Center 38 | Xd shape: torch.Size([61, 84]) | ntemp: 12
+2026-04-27 18:00:42,461 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:42,461 kilosort.clustering_qr DEBUG    Cluster center: 39 (40/96)
+2026-04-27 18:00:42,461 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,461 kilosort.clustering_qr DEBUG    CPU usage:    87.50 %
+2026-04-27 18:00:42,461 kilosort.clustering_qr DEBUG    Mem used:     33.50 %     |      21.34 GB
+2026-04-27 18:00:42,461 kilosort.clustering_qr DEBUG    Mem avail:    42.39 / 63.73 GB
+2026-04-27 18:00:42,461 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:42,461 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:42,461 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:42,461 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,463 kilosort.clustering_qr DEBUG    Center 39 | Xd shape: torch.Size([51, 84]) | ntemp: 12
+2026-04-27 18:00:42,464 kilosort.clustering_qr DEBUG    Center 40 | Xd shape: torch.Size([70, 84]) | ntemp: 12
+2026-04-27 18:00:42,465 kilosort.clustering_qr DEBUG    Center 41 | Xd shape: torch.Size([38, 84]) | ntemp: 12
+2026-04-27 18:00:42,467 kilosort.clustering_qr DEBUG    Center 42 | Xd shape: torch.Size([50, 84]) | ntemp: 12
+2026-04-27 18:00:42,468 kilosort.clustering_qr DEBUG    Center 43 | Xd shape: torch.Size([36, 84]) | ntemp: 12
+2026-04-27 18:00:42,470 kilosort.clustering_qr DEBUG    Center 44 | Xd shape: torch.Size([32, 84]) | ntemp: 12
+2026-04-27 18:00:42,471 kilosort.clustering_qr DEBUG    Center 45 | Xd shape: torch.Size([29, 84]) | ntemp: 12
+2026-04-27 18:00:42,473 kilosort.clustering_qr DEBUG    Center 46 | Xd shape: torch.Size([48, 72]) | ntemp: 12
+2026-04-27 18:00:42,474 kilosort.clustering_qr DEBUG    Center 47 | Xd shape: torch.Size([38, 60]) | ntemp: 9
+2026-04-27 18:00:42,477 kilosort.clustering_qr DEBUG    Center 48 | Xd shape: torch.Size([20, 60]) | ntemp: 12
+2026-04-27 18:00:42,478 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:42,478 kilosort.clustering_qr DEBUG    Cluster center: 49 (50/96)
+2026-04-27 18:00:42,478 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,478 kilosort.clustering_qr DEBUG    CPU usage:    79.20 %
+2026-04-27 18:00:42,478 kilosort.clustering_qr DEBUG    Mem used:     33.50 %     |      21.34 GB
+2026-04-27 18:00:42,478 kilosort.clustering_qr DEBUG    Mem avail:    42.39 / 63.73 GB
+2026-04-27 18:00:42,478 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:42,478 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:42,478 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:42,478 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,479 kilosort.clustering_qr DEBUG    Center 49 | Xd shape: torch.Size([24, 84]) | ntemp: 12
+2026-04-27 18:00:42,481 kilosort.clustering_qr DEBUG    Center 50 | Xd shape: torch.Size([12, 84]) | ntemp: 12
+2026-04-27 18:00:42,482 kilosort.clustering_qr DEBUG    Center 51 | Xd shape: torch.Size([13, 84]) | ntemp: 12
+2026-04-27 18:00:42,484 kilosort.clustering_qr DEBUG    Center 52 | Xd shape: torch.Size([15, 84]) | ntemp: 12
+2026-04-27 18:00:42,485 kilosort.clustering_qr DEBUG    Center 53 | Xd shape: torch.Size([10, 84]) | ntemp: 12
+2026-04-27 18:00:42,487 kilosort.clustering_qr DEBUG    Center 54 | Xd shape: torch.Size([59, 84]) | ntemp: 12
+2026-04-27 18:00:42,488 kilosort.clustering_qr DEBUG    Center 55 | Xd shape: torch.Size([49, 84]) | ntemp: 12
+2026-04-27 18:00:42,490 kilosort.clustering_qr DEBUG    Center 56 | Xd shape: torch.Size([41, 84]) | ntemp: 12
+2026-04-27 18:00:42,491 kilosort.clustering_qr DEBUG    Center 57 | Xd shape: torch.Size([13, 84]) | ntemp: 12
+2026-04-27 18:00:42,493 kilosort.clustering_qr DEBUG    Center 58 | Xd shape: torch.Size([32, 84]) | ntemp: 12
+2026-04-27 18:00:42,494 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:42,494 kilosort.clustering_qr DEBUG    Cluster center: 59 (60/96)
+2026-04-27 18:00:42,494 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,494 kilosort.clustering_qr DEBUG    CPU usage:    72.30 %
+2026-04-27 18:00:42,494 kilosort.clustering_qr DEBUG    Mem used:     33.50 %     |      21.34 GB
+2026-04-27 18:00:42,494 kilosort.clustering_qr DEBUG    Mem avail:    42.39 / 63.73 GB
+2026-04-27 18:00:42,494 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:42,494 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:42,494 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:42,494 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,495 kilosort.clustering_qr DEBUG    Center 59 | Xd shape: torch.Size([33, 84]) | ntemp: 12
+2026-04-27 18:00:42,495 kilosort.clustering_qr DEBUG    Center 60 | Xd shape: torch.Size([37, 84]) | ntemp: 12
+2026-04-27 18:00:42,496 kilosort.clustering_qr DEBUG    Center 61 | Xd shape: torch.Size([32, 84]) | ntemp: 12
+2026-04-27 18:00:42,497 kilosort.clustering_qr DEBUG    Center 62 | Xd shape: torch.Size([95, 84]) | ntemp: 12
+2026-04-27 18:00:42,498 kilosort.clustering_qr DEBUG    Center 63 | Xd shape: torch.Size([102, 84]) | ntemp: 12
+2026-04-27 18:00:42,498 kilosort.clustering_qr DEBUG    Center 64 | Xd shape: torch.Size([39, 84]) | ntemp: 12
+2026-04-27 18:00:42,499 kilosort.clustering_qr DEBUG    Center 65 | Xd shape: torch.Size([57, 84]) | ntemp: 12
+2026-04-27 18:00:42,500 kilosort.clustering_qr DEBUG    Center 66 | Xd shape: torch.Size([48, 84]) | ntemp: 12
+2026-04-27 18:00:42,501 kilosort.clustering_qr DEBUG    Center 67 | Xd shape: torch.Size([42, 84]) | ntemp: 12
+2026-04-27 18:00:42,501 kilosort.clustering_qr DEBUG    Center 68 | Xd shape: torch.Size([34, 84]) | ntemp: 12
+2026-04-27 18:00:42,502 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:42,502 kilosort.clustering_qr DEBUG    Cluster center: 69 (70/96)
+2026-04-27 18:00:42,502 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,502 kilosort.clustering_qr DEBUG    CPU usage:     0.00 %
+2026-04-27 18:00:42,502 kilosort.clustering_qr DEBUG    Mem used:     33.50 %     |      21.34 GB
+2026-04-27 18:00:42,502 kilosort.clustering_qr DEBUG    Mem avail:    42.39 / 63.73 GB
+2026-04-27 18:00:42,502 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:42,502 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:42,502 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:42,502 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,503 kilosort.clustering_qr DEBUG    Center 69 | Xd shape: torch.Size([128, 84]) | ntemp: 12
+2026-04-27 18:00:42,503 kilosort.clustering_qr DEBUG    Center 70 | Xd shape: torch.Size([99, 84]) | ntemp: 12
+2026-04-27 18:00:42,504 kilosort.clustering_qr DEBUG    Center 71 | Xd shape: torch.Size([47, 84]) | ntemp: 12
+2026-04-27 18:00:42,505 kilosort.clustering_qr DEBUG    Center 72 | Xd shape: torch.Size([58, 84]) | ntemp: 12
+2026-04-27 18:00:42,506 kilosort.clustering_qr DEBUG    Center 73 | Xd shape: torch.Size([52, 84]) | ntemp: 12
+2026-04-27 18:00:42,506 kilosort.clustering_qr DEBUG    Center 74 | Xd shape: torch.Size([46, 84]) | ntemp: 12
+2026-04-27 18:00:42,507 kilosort.clustering_qr DEBUG    Center 75 | Xd shape: torch.Size([43, 84]) | ntemp: 12
+2026-04-27 18:00:42,508 kilosort.clustering_qr DEBUG    Center 76 | Xd shape: torch.Size([66, 84]) | ntemp: 12
+2026-04-27 18:00:42,508 kilosort.clustering_qr DEBUG    Center 77 | Xd shape: torch.Size([37, 84]) | ntemp: 12
+2026-04-27 18:00:42,509 kilosort.clustering_qr DEBUG    Center 78 | Xd shape: torch.Size([30, 84]) | ntemp: 12
+2026-04-27 18:00:42,510 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:42,510 kilosort.clustering_qr DEBUG    Cluster center: 79 (80/96)
+2026-04-27 18:00:42,510 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,510 kilosort.clustering_qr DEBUG    CPU usage:    85.00 %
+2026-04-27 18:00:42,510 kilosort.clustering_qr DEBUG    Mem used:     33.50 %     |      21.34 GB
+2026-04-27 18:00:42,510 kilosort.clustering_qr DEBUG    Mem avail:    42.39 / 63.73 GB
+2026-04-27 18:00:42,510 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:42,510 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:42,510 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:42,510 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,511 kilosort.clustering_qr DEBUG    Center 79 | Xd shape: torch.Size([26, 84]) | ntemp: 12
+2026-04-27 18:00:42,511 kilosort.clustering_qr DEBUG    Center 80 | Xd shape: torch.Size([26, 84]) | ntemp: 12
+2026-04-27 18:00:42,512 kilosort.clustering_qr DEBUG    Center 81 | Xd shape: torch.Size([45, 84]) | ntemp: 12
+2026-04-27 18:00:42,513 kilosort.clustering_qr DEBUG    Center 82 | Xd shape: torch.Size([31, 84]) | ntemp: 12
+2026-04-27 18:00:42,513 kilosort.clustering_qr DEBUG    Center 83 | Xd shape: torch.Size([26, 84]) | ntemp: 12
+2026-04-27 18:00:42,515 kilosort.clustering_qr DEBUG    Center 84 | Xd shape: torch.Size([28, 84]) | ntemp: 12
+2026-04-27 18:00:42,517 kilosort.clustering_qr DEBUG    Center 85 | Xd shape: torch.Size([31, 84]) | ntemp: 12
+2026-04-27 18:00:42,518 kilosort.clustering_qr DEBUG    Center 86 | Xd shape: torch.Size([59, 84]) | ntemp: 12
+2026-04-27 18:00:42,520 kilosort.clustering_qr DEBUG    Center 87 | Xd shape: torch.Size([25, 84]) | ntemp: 12
+2026-04-27 18:00:42,522 kilosort.clustering_qr DEBUG    Center 88 | Xd shape: torch.Size([75, 84]) | ntemp: 12
+2026-04-27 18:00:42,523 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:42,523 kilosort.clustering_qr DEBUG    Cluster center: 89 (90/96)
+2026-04-27 18:00:42,523 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,523 kilosort.clustering_qr DEBUG    CPU usage:     0.00 %
+2026-04-27 18:00:42,523 kilosort.clustering_qr DEBUG    Mem used:     33.50 %     |      21.34 GB
+2026-04-27 18:00:42,523 kilosort.clustering_qr DEBUG    Mem avail:    42.39 / 63.73 GB
+2026-04-27 18:00:42,523 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:42,523 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:42,523 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:42,523 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:42,524 kilosort.clustering_qr DEBUG    Center 89 | Xd shape: torch.Size([42, 84]) | ntemp: 12
+2026-04-27 18:00:42,526 kilosort.clustering_qr DEBUG    Center 90 | Xd shape: torch.Size([39, 84]) | ntemp: 12
+2026-04-27 18:00:42,527 kilosort.clustering_qr DEBUG    Center 91 | Xd shape: torch.Size([67, 84]) | ntemp: 12
+2026-04-27 18:00:42,529 kilosort.clustering_qr DEBUG    Center 92 | Xd shape: torch.Size([34, 84]) | ntemp: 12
+2026-04-27 18:00:42,530 kilosort.clustering_qr DEBUG    Center 93 | Xd shape: torch.Size([34, 84]) | ntemp: 12
+2026-04-27 18:00:42,532 kilosort.clustering_qr DEBUG    Center 94 | Xd shape: torch.Size([34, 72]) | ntemp: 12
+2026-04-27 18:00:42,533 kilosort.clustering_qr DEBUG    Center 95 | Xd shape: torch.Size([36, 60]) | ntemp: 9
+2026-04-27 18:00:42,602 kilosort.run_kilosort INFO     96 clusters found, in 0.21s; total 37.13s
+2026-04-27 18:00:42,603 kilosort.run_kilosort DEBUG    clu shape: (4025,)
+2026-04-27 18:00:42,603 kilosort.run_kilosort DEBUG    Wall shape: torch.Size([96, 384, 6])
+2026-04-27 18:00:42,603 kilosort.run_kilosort INFO      
+2026-04-27 18:00:42,603 kilosort.run_kilosort INFO     Resource usage after first clustering
+2026-04-27 18:00:42,603 kilosort.run_kilosort INFO     ********************************************************
+2026-04-27 18:00:42,603 kilosort.run_kilosort INFO     CPU usage:    100.00 %
+2026-04-27 18:00:42,603 kilosort.run_kilosort INFO     Mem used:     33.60 %     |      21.39 GB
+2026-04-27 18:00:42,603 kilosort.run_kilosort INFO     Mem avail:    42.34 / 63.73 GB
+2026-04-27 18:00:42,603 kilosort.run_kilosort INFO     ------------------------------------------------------
+2026-04-27 18:00:42,603 kilosort.run_kilosort INFO     GPU usage:    N/A
+2026-04-27 18:00:42,603 kilosort.run_kilosort INFO     GPU memory:   N/A
+2026-04-27 18:00:42,603 kilosort.run_kilosort INFO     ********************************************************
+2026-04-27 18:00:42,603 kilosort.run_kilosort DEBUG    
+2026-04-27 18:00:42,603 kilosort.run_kilosort DEBUG    --------------------
+2026-04-27 18:00:42,603 kilosort.run_kilosort DEBUG    Process thread count: N/A (linux only)
+2026-04-27 18:00:42,603 kilosort.run_kilosort DEBUG    num torch threads: 16
+2026-04-27 18:00:42,603 kilosort.run_kilosort DEBUG    --------------------
 
-2026-04-21 17:25:48,295 kilosort.run_kilosort INFO      
-2026-04-21 17:25:48,295 kilosort.run_kilosort INFO     Extracting spikes using cluster waveforms
-2026-04-21 17:25:48,296 kilosort.run_kilosort INFO     ----------------------------------------
-2026-04-21 17:25:48,314 kilosort.template_matching DEBUG     
-2026-04-21 17:25:48,315 kilosort.template_matching DEBUG    Batch 0
-2026-04-21 17:25:48,315 kilosort.template_matching DEBUG    ********************************************************
-2026-04-21 17:25:48,315 kilosort.template_matching DEBUG    CPU usage:    82.40 %
-2026-04-21 17:25:48,315 kilosort.template_matching DEBUG    Mem used:     97.40 %     |      30.69 GB
-2026-04-21 17:25:48,315 kilosort.template_matching DEBUG    Mem avail:     0.82 / 31.51 GB
-2026-04-21 17:25:48,315 kilosort.template_matching DEBUG    ------------------------------------------------------
-2026-04-21 17:25:48,315 kilosort.template_matching DEBUG    GPU usage:    N/A
-2026-04-21 17:25:48,315 kilosort.template_matching DEBUG    GPU memory:   N/A
-2026-04-21 17:25:48,315 kilosort.template_matching DEBUG    ********************************************************
-2026-04-21 17:25:51,750 kilosort.template_matching DEBUG     
-2026-04-21 17:25:51,750 kilosort.template_matching DEBUG    Batch 1
-2026-04-21 17:25:51,750 kilosort.template_matching DEBUG    ********************************************************
-2026-04-21 17:25:51,750 kilosort.template_matching DEBUG    CPU usage:    76.80 %
-2026-04-21 17:25:51,750 kilosort.template_matching DEBUG    Mem used:     97.50 %     |      30.74 GB
-2026-04-21 17:25:51,750 kilosort.template_matching DEBUG    Mem avail:     0.77 / 31.51 GB
-2026-04-21 17:25:51,750 kilosort.template_matching DEBUG    ------------------------------------------------------
-2026-04-21 17:25:51,750 kilosort.template_matching DEBUG    GPU usage:    N/A
-2026-04-21 17:25:51,750 kilosort.template_matching DEBUG    GPU memory:   N/A
-2026-04-21 17:25:51,750 kilosort.template_matching DEBUG    ********************************************************
-2026-04-21 17:25:51,751 kilosort.run_kilosort DEBUG    
-2026-04-21 17:25:51,751 kilosort.run_kilosort DEBUG    --------------------
-2026-04-21 17:25:51,751 kilosort.run_kilosort DEBUG    Process thread count: N/A (linux only)
-2026-04-21 17:25:51,751 kilosort.run_kilosort DEBUG    num torch threads: 16
-2026-04-21 17:25:51,751 kilosort.run_kilosort DEBUG    --------------------
+2026-04-27 18:00:42,603 kilosort.run_kilosort INFO      
+2026-04-27 18:00:42,603 kilosort.run_kilosort INFO     Extracting spikes using cluster waveforms
+2026-04-27 18:00:42,603 kilosort.run_kilosort INFO     ----------------------------------------
+2026-04-27 18:00:42,617 kilosort.template_matching DEBUG     
+2026-04-27 18:00:42,618 kilosort.template_matching DEBUG    Batch 0
+2026-04-27 18:00:42,618 kilosort.template_matching DEBUG    ********************************************************
+2026-04-27 18:00:42,618 kilosort.template_matching DEBUG    CPU usage:    11.10 %
+2026-04-27 18:00:42,618 kilosort.template_matching DEBUG    Mem used:     33.60 %     |      21.39 GB
+2026-04-27 18:00:42,618 kilosort.template_matching DEBUG    Mem avail:    42.33 / 63.73 GB
+2026-04-27 18:00:42,618 kilosort.template_matching DEBUG    ------------------------------------------------------
+2026-04-27 18:00:42,618 kilosort.template_matching DEBUG    GPU usage:    N/A
+2026-04-27 18:00:42,618 kilosort.template_matching DEBUG    GPU memory:   N/A
+2026-04-27 18:00:42,618 kilosort.template_matching DEBUG    ********************************************************
+2026-04-27 18:00:45,597 kilosort.template_matching DEBUG     
+2026-04-27 18:00:45,598 kilosort.template_matching DEBUG    Batch 1
+2026-04-27 18:00:45,598 kilosort.template_matching DEBUG    ********************************************************
+2026-04-27 18:00:45,598 kilosort.template_matching DEBUG    CPU usage:    75.20 %
+2026-04-27 18:00:45,599 kilosort.template_matching DEBUG    Mem used:     33.90 %     |      21.63 GB
+2026-04-27 18:00:45,599 kilosort.template_matching DEBUG    Mem avail:    42.09 / 63.73 GB
+2026-04-27 18:00:45,599 kilosort.template_matching DEBUG    ------------------------------------------------------
+2026-04-27 18:00:45,599 kilosort.template_matching DEBUG    GPU usage:    N/A
+2026-04-27 18:00:45,599 kilosort.template_matching DEBUG    GPU memory:   N/A
+2026-04-27 18:00:45,599 kilosort.template_matching DEBUG    ********************************************************
+2026-04-27 18:00:45,600 kilosort.run_kilosort DEBUG    
+2026-04-27 18:00:45,600 kilosort.run_kilosort DEBUG    --------------------
+2026-04-27 18:00:45,600 kilosort.run_kilosort DEBUG    Process thread count: N/A (linux only)
+2026-04-27 18:00:45,600 kilosort.run_kilosort DEBUG    num torch threads: 16
+2026-04-27 18:00:45,600 kilosort.run_kilosort DEBUG    --------------------
 
-2026-04-21 17:25:51,752 kilosort.run_kilosort INFO     2442 spikes extracted in 3.46s; total 47.78s
-2026-04-21 17:25:51,752 kilosort.run_kilosort DEBUG    st shape: (2442, 3)
-2026-04-21 17:25:51,752 kilosort.run_kilosort DEBUG    tF shape: torch.Size([2442, 10, 6])
-2026-04-21 17:25:51,752 kilosort.run_kilosort DEBUG    iCC shape: torch.Size([10, 384])
-2026-04-21 17:25:51,752 kilosort.run_kilosort DEBUG    iU shape: torch.Size([93])
-2026-04-21 17:25:51,752 kilosort.run_kilosort INFO      
-2026-04-21 17:25:51,752 kilosort.run_kilosort INFO     Resource usage after spike detect (learned)
-2026-04-21 17:25:51,753 kilosort.run_kilosort INFO     ********************************************************
-2026-04-21 17:25:51,753 kilosort.run_kilosort INFO     CPU usage:    69.20 %
-2026-04-21 17:25:51,753 kilosort.run_kilosort INFO     Mem used:     97.50 %     |      30.74 GB
-2026-04-21 17:25:51,753 kilosort.run_kilosort INFO     Mem avail:     0.77 / 31.51 GB
-2026-04-21 17:25:51,753 kilosort.run_kilosort INFO     ------------------------------------------------------
-2026-04-21 17:25:51,753 kilosort.run_kilosort INFO     GPU usage:    N/A
-2026-04-21 17:25:51,753 kilosort.run_kilosort INFO     GPU memory:   N/A
-2026-04-21 17:25:51,753 kilosort.run_kilosort INFO     ********************************************************
-2026-04-21 17:25:52,846 kilosort.run_kilosort INFO      
-2026-04-21 17:25:52,846 kilosort.run_kilosort INFO     Final clustering
-2026-04-21 17:25:52,846 kilosort.run_kilosort INFO     ----------------------------------------
-2026-04-21 17:25:52,851 kilosort.clustering_qr DEBUG    Center 0 | Xd shape: torch.Size([29, 60]) | ntemp: 1
-2026-04-21 17:25:52,853 kilosort.clustering_qr DEBUG    Center 1 | Xd shape: torch.Size([8, 60]) | ntemp: 1
-2026-04-21 17:25:52,854 kilosort.clustering_qr DEBUG    Center 2 | Xd shape: torch.Size([6, 60]) | ntemp: 1
-2026-04-21 17:25:52,854 kilosort.clustering_qr DEBUG    Center 3 | Xd shape: torch.Size([4, 60]) | ntemp: 1
-2026-04-21 17:25:52,855 kilosort.clustering_qr DEBUG    Center 4 | Xd shape: torch.Size([10, 60]) | ntemp: 1
-2026-04-21 17:25:52,855 kilosort.clustering_qr DEBUG    Center 5 | Xd shape: torch.Size([5, 60]) | ntemp: 1
-2026-04-21 17:25:52,856 kilosort.clustering_qr DEBUG    Center 6 | Xd shape: torch.Size([3, 60]) | ntemp: 1
-2026-04-21 17:25:52,857 kilosort.clustering_qr DEBUG    Center 8 | Xd shape: torch.Size([168, 60]) | ntemp: 1
-2026-04-21 17:25:52,857 kilosort.clustering_qr DEBUG    Center 10 | Xd shape: torch.Size([25, 72]) | ntemp: 2
-2026-04-21 17:25:52,858 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:52,858 kilosort.clustering_qr DEBUG    Cluster center: 11 (10/84)
-2026-04-21 17:25:52,858 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,858 kilosort.clustering_qr DEBUG    CPU usage:    21.00 %
-2026-04-21 17:25:52,858 kilosort.clustering_qr DEBUG    Mem used:     97.80 %     |      30.81 GB
-2026-04-21 17:25:52,858 kilosort.clustering_qr DEBUG    Mem avail:     0.70 / 31.51 GB
-2026-04-21 17:25:52,859 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:52,859 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:52,859 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:52,859 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,859 kilosort.clustering_qr DEBUG    Center 11 | Xd shape: torch.Size([16, 60]) | ntemp: 1
-2026-04-21 17:25:52,859 kilosort.clustering_qr DEBUG    Center 12 | Xd shape: torch.Size([11, 60]) | ntemp: 1
-2026-04-21 17:25:52,860 kilosort.clustering_qr DEBUG    Center 13 | Xd shape: torch.Size([17, 60]) | ntemp: 1
-2026-04-21 17:25:52,860 kilosort.clustering_qr DEBUG    Center 14 | Xd shape: torch.Size([28, 60]) | ntemp: 1
-2026-04-21 17:25:52,861 kilosort.clustering_qr DEBUG    Center 15 | Xd shape: torch.Size([5, 60]) | ntemp: 1
-2026-04-21 17:25:52,861 kilosort.clustering_qr DEBUG    Center 16 | Xd shape: torch.Size([22, 60]) | ntemp: 1
-2026-04-21 17:25:52,862 kilosort.clustering_qr DEBUG    Center 17 | Xd shape: torch.Size([3, 60]) | ntemp: 1
-2026-04-21 17:25:52,862 kilosort.clustering_qr DEBUG    Center 18 | Xd shape: torch.Size([14, 60]) | ntemp: 1
-2026-04-21 17:25:52,863 kilosort.clustering_qr DEBUG    Center 19 | Xd shape: torch.Size([9, 60]) | ntemp: 1
-2026-04-21 17:25:52,863 kilosort.clustering_qr DEBUG    Center 20 | Xd shape: torch.Size([54, 60]) | ntemp: 1
-2026-04-21 17:25:52,864 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:52,864 kilosort.clustering_qr DEBUG    Cluster center: 21 (20/84)
-2026-04-21 17:25:52,864 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,864 kilosort.clustering_qr DEBUG    CPU usage:    100.00 %
-2026-04-21 17:25:52,864 kilosort.clustering_qr DEBUG    Mem used:     97.80 %     |      30.81 GB
-2026-04-21 17:25:52,864 kilosort.clustering_qr DEBUG    Mem avail:     0.70 / 31.51 GB
-2026-04-21 17:25:52,864 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:52,864 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:52,864 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:52,864 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,864 kilosort.clustering_qr DEBUG    Center 21 | Xd shape: torch.Size([4, 60]) | ntemp: 1
-2026-04-21 17:25:52,865 kilosort.clustering_qr DEBUG    Center 22 | Xd shape: torch.Size([2, 60]) | ntemp: 1
-2026-04-21 17:25:52,865 kilosort.clustering_qr DEBUG    Center 24 | Xd shape: torch.Size([60, 60]) | ntemp: 1
-2026-04-21 17:25:52,866 kilosort.clustering_qr DEBUG    Center 25 | Xd shape: torch.Size([31, 60]) | ntemp: 1
-2026-04-21 17:25:52,866 kilosort.clustering_qr DEBUG    Center 26 | Xd shape: torch.Size([7, 60]) | ntemp: 1
-2026-04-21 17:25:52,867 kilosort.clustering_qr DEBUG    Center 27 | Xd shape: torch.Size([14, 60]) | ntemp: 1
-2026-04-21 17:25:52,867 kilosort.clustering_qr DEBUG    Center 28 | Xd shape: torch.Size([30, 60]) | ntemp: 1
-2026-04-21 17:25:52,868 kilosort.clustering_qr DEBUG    Center 29 | Xd shape: torch.Size([43, 60]) | ntemp: 1
-2026-04-21 17:25:52,868 kilosort.clustering_qr DEBUG    Center 30 | Xd shape: torch.Size([15, 60]) | ntemp: 1
-2026-04-21 17:25:52,869 kilosort.clustering_qr DEBUG    Center 31 | Xd shape: torch.Size([45, 60]) | ntemp: 1
-2026-04-21 17:25:52,870 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:52,870 kilosort.clustering_qr DEBUG    Cluster center: 33 (30/84)
-2026-04-21 17:25:52,870 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,870 kilosort.clustering_qr DEBUG    CPU usage:     0.00 %
-2026-04-21 17:25:52,870 kilosort.clustering_qr DEBUG    Mem used:     97.80 %     |      30.81 GB
-2026-04-21 17:25:52,870 kilosort.clustering_qr DEBUG    Mem avail:     0.70 / 31.51 GB
-2026-04-21 17:25:52,870 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:52,870 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:52,870 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:52,870 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,871 kilosort.clustering_qr DEBUG    Center 33 | Xd shape: torch.Size([56, 72]) | ntemp: 2
-2026-04-21 17:25:52,871 kilosort.clustering_qr DEBUG    Center 34 | Xd shape: torch.Size([86, 60]) | ntemp: 1
-2026-04-21 17:25:52,872 kilosort.clustering_qr DEBUG    Center 35 | Xd shape: torch.Size([186, 60]) | ntemp: 1
-2026-04-21 17:25:52,873 kilosort.clustering_qr DEBUG    Center 36 | Xd shape: torch.Size([79, 60]) | ntemp: 1
-2026-04-21 17:25:52,873 kilosort.clustering_qr DEBUG    Center 37 | Xd shape: torch.Size([48, 60]) | ntemp: 1
-2026-04-21 17:25:52,874 kilosort.clustering_qr DEBUG    Center 38 | Xd shape: torch.Size([55, 60]) | ntemp: 1
-2026-04-21 17:25:52,874 kilosort.clustering_qr DEBUG    Center 39 | Xd shape: torch.Size([45, 60]) | ntemp: 1
-2026-04-21 17:25:52,875 kilosort.clustering_qr DEBUG    Center 40 | Xd shape: torch.Size([55, 60]) | ntemp: 1
-2026-04-21 17:25:52,876 kilosort.clustering_qr DEBUG    Center 41 | Xd shape: torch.Size([36, 60]) | ntemp: 1
-2026-04-21 17:25:52,876 kilosort.clustering_qr DEBUG    Center 42 | Xd shape: torch.Size([27, 60]) | ntemp: 1
-2026-04-21 17:25:52,877 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:52,877 kilosort.clustering_qr DEBUG    Cluster center: 43 (40/84)
-2026-04-21 17:25:52,877 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,877 kilosort.clustering_qr DEBUG    CPU usage:    88.90 %
-2026-04-21 17:25:52,878 kilosort.clustering_qr DEBUG    Mem used:     97.80 %     |      30.81 GB
-2026-04-21 17:25:52,878 kilosort.clustering_qr DEBUG    Mem avail:     0.70 / 31.51 GB
-2026-04-21 17:25:52,878 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:52,878 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:52,878 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:52,878 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,878 kilosort.clustering_qr DEBUG    Center 43 | Xd shape: torch.Size([10, 60]) | ntemp: 1
-2026-04-21 17:25:52,879 kilosort.clustering_qr DEBUG    Center 44 | Xd shape: torch.Size([33, 60]) | ntemp: 2
-2026-04-21 17:25:52,879 kilosort.clustering_qr DEBUG    Center 46 | Xd shape: torch.Size([32, 60]) | ntemp: 1
-2026-04-21 17:25:52,880 kilosort.clustering_qr DEBUG    Center 47 | Xd shape: torch.Size([20, 60]) | ntemp: 1
-2026-04-21 17:25:52,882 kilosort.clustering_qr DEBUG    Center 48 | Xd shape: torch.Size([2, 60]) | ntemp: 1
-2026-04-21 17:25:52,882 kilosort.clustering_qr DEBUG    Center 49 | Xd shape: torch.Size([7, 60]) | ntemp: 1
-2026-04-21 17:25:52,883 kilosort.clustering_qr DEBUG    Center 52 | Xd shape: torch.Size([3, 60]) | ntemp: 1
-2026-04-21 17:25:52,884 kilosort.clustering_qr DEBUG    Center 53 | Xd shape: torch.Size([14, 72]) | ntemp: 2
-2026-04-21 17:25:52,885 kilosort.clustering_qr DEBUG    Center 54 | Xd shape: torch.Size([88, 60]) | ntemp: 1
-2026-04-21 17:25:52,886 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:52,886 kilosort.clustering_qr DEBUG    Cluster center: 55 (50/84)
-2026-04-21 17:25:52,886 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,886 kilosort.clustering_qr DEBUG    CPU usage:     0.00 %
-2026-04-21 17:25:52,886 kilosort.clustering_qr DEBUG    Mem used:     97.80 %     |      30.81 GB
-2026-04-21 17:25:52,886 kilosort.clustering_qr DEBUG    Mem avail:     0.70 / 31.51 GB
-2026-04-21 17:25:52,886 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:52,886 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:52,887 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:52,887 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,887 kilosort.clustering_qr DEBUG    Center 55 | Xd shape: torch.Size([22, 60]) | ntemp: 1
-2026-04-21 17:25:52,887 kilosort.clustering_qr DEBUG    Center 56 | Xd shape: torch.Size([39, 60]) | ntemp: 1
-2026-04-21 17:25:52,888 kilosort.clustering_qr DEBUG    Center 57 | Xd shape: torch.Size([9, 60]) | ntemp: 1
-2026-04-21 17:25:52,888 kilosort.clustering_qr DEBUG    Center 58 | Xd shape: torch.Size([25, 60]) | ntemp: 1
-2026-04-21 17:25:52,889 kilosort.clustering_qr DEBUG    Center 59 | Xd shape: torch.Size([9, 60]) | ntemp: 1
-2026-04-21 17:25:52,889 kilosort.clustering_qr DEBUG    Center 60 | Xd shape: torch.Size([17, 60]) | ntemp: 1
-2026-04-21 17:25:52,890 kilosort.clustering_qr DEBUG    Center 61 | Xd shape: torch.Size([1, 60]) | ntemp: 1
-2026-04-21 17:25:52,891 kilosort.clustering_qr DEBUG    Center 63 | Xd shape: torch.Size([158, 60]) | ntemp: 1
-2026-04-21 17:25:52,891 kilosort.clustering_qr DEBUG    Center 64 | Xd shape: torch.Size([16, 60]) | ntemp: 1
-2026-04-21 17:25:52,892 kilosort.clustering_qr DEBUG    Center 65 | Xd shape: torch.Size([6, 60]) | ntemp: 1
-2026-04-21 17:25:52,893 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:52,893 kilosort.clustering_qr DEBUG    Cluster center: 66 (60/84)
-2026-04-21 17:25:52,893 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,893 kilosort.clustering_qr DEBUG    CPU usage:    84.20 %
-2026-04-21 17:25:52,893 kilosort.clustering_qr DEBUG    Mem used:     97.80 %     |      30.81 GB
-2026-04-21 17:25:52,893 kilosort.clustering_qr DEBUG    Mem avail:     0.70 / 31.51 GB
-2026-04-21 17:25:52,893 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:52,893 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:52,893 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:52,893 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,894 kilosort.clustering_qr DEBUG    Center 66 | Xd shape: torch.Size([3, 60]) | ntemp: 1
-2026-04-21 17:25:52,894 kilosort.clustering_qr DEBUG    Center 67 | Xd shape: torch.Size([23, 60]) | ntemp: 1
-2026-04-21 17:25:52,895 kilosort.clustering_qr DEBUG    Center 68 | Xd shape: torch.Size([13, 60]) | ntemp: 1
-2026-04-21 17:25:52,895 kilosort.clustering_qr DEBUG    Center 69 | Xd shape: torch.Size([125, 60]) | ntemp: 1
-2026-04-21 17:25:52,896 kilosort.clustering_qr DEBUG    Center 70 | Xd shape: torch.Size([89, 60]) | ntemp: 2
-2026-04-21 17:25:52,896 kilosort.clustering_qr DEBUG    Center 72 | Xd shape: torch.Size([9, 60]) | ntemp: 1
-2026-04-21 17:25:52,896 kilosort.clustering_qr DEBUG    Center 73 | Xd shape: torch.Size([11, 72]) | ntemp: 2
-2026-04-21 17:25:52,897 kilosort.clustering_qr DEBUG    Center 75 | Xd shape: torch.Size([6, 60]) | ntemp: 1
-2026-04-21 17:25:52,898 kilosort.clustering_qr DEBUG    Center 76 | Xd shape: torch.Size([28, 60]) | ntemp: 1
-2026-04-21 17:25:52,898 kilosort.clustering_qr DEBUG    Center 77 | Xd shape: torch.Size([9, 60]) | ntemp: 1
-2026-04-21 17:25:52,899 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:52,899 kilosort.clustering_qr DEBUG    Cluster center: 78 (70/84)
-2026-04-21 17:25:52,899 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,900 kilosort.clustering_qr DEBUG    CPU usage:     0.00 %
-2026-04-21 17:25:52,900 kilosort.clustering_qr DEBUG    Mem used:     97.80 %     |      30.81 GB
-2026-04-21 17:25:52,900 kilosort.clustering_qr DEBUG    Mem avail:     0.70 / 31.51 GB
-2026-04-21 17:25:52,900 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:52,900 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:52,900 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:52,900 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,900 kilosort.clustering_qr DEBUG    Center 78 | Xd shape: torch.Size([4, 60]) | ntemp: 1
-2026-04-21 17:25:52,900 kilosort.clustering_qr DEBUG    Center 80 | Xd shape: torch.Size([5, 72]) | ntemp: 2
-2026-04-21 17:25:52,901 kilosort.clustering_qr DEBUG    Center 81 | Xd shape: torch.Size([16, 60]) | ntemp: 1
-2026-04-21 17:25:52,901 kilosort.clustering_qr DEBUG    Center 82 | Xd shape: torch.Size([6, 60]) | ntemp: 1
-2026-04-21 17:25:52,902 kilosort.clustering_qr DEBUG    Center 83 | Xd shape: torch.Size([2, 60]) | ntemp: 1
-2026-04-21 17:25:52,903 kilosort.clustering_qr DEBUG    Center 84 | Xd shape: torch.Size([4, 60]) | ntemp: 1
-2026-04-21 17:25:52,903 kilosort.clustering_qr DEBUG    Center 86 | Xd shape: torch.Size([45, 60]) | ntemp: 2
-2026-04-21 17:25:52,904 kilosort.clustering_qr DEBUG    Center 88 | Xd shape: torch.Size([62, 72]) | ntemp: 2
-2026-04-21 17:25:52,904 kilosort.clustering_qr DEBUG    Center 89 | Xd shape: torch.Size([47, 60]) | ntemp: 1
-2026-04-21 17:25:52,905 kilosort.clustering_qr DEBUG    Center 90 | Xd shape: torch.Size([4, 60]) | ntemp: 1
-2026-04-21 17:25:52,907 kilosort.clustering_qr DEBUG     
-2026-04-21 17:25:52,907 kilosort.clustering_qr DEBUG    Cluster center: 91 (80/84)
-2026-04-21 17:25:52,907 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,907 kilosort.clustering_qr DEBUG    CPU usage:     0.00 %
-2026-04-21 17:25:52,907 kilosort.clustering_qr DEBUG    Mem used:     97.80 %     |      30.81 GB
-2026-04-21 17:25:52,907 kilosort.clustering_qr DEBUG    Mem avail:     0.70 / 31.51 GB
-2026-04-21 17:25:52,907 kilosort.clustering_qr DEBUG    ------------------------------------------------------
-2026-04-21 17:25:52,907 kilosort.clustering_qr DEBUG    GPU usage:    N/A
-2026-04-21 17:25:52,907 kilosort.clustering_qr DEBUG    GPU memory:   N/A
-2026-04-21 17:25:52,907 kilosort.clustering_qr DEBUG    ********************************************************
-2026-04-21 17:25:52,907 kilosort.clustering_qr DEBUG    Center 91 | Xd shape: torch.Size([16, 60]) | ntemp: 1
-2026-04-21 17:25:52,908 kilosort.clustering_qr DEBUG    Center 92 | Xd shape: torch.Size([5, 60]) | ntemp: 1
-2026-04-21 17:25:52,908 kilosort.clustering_qr DEBUG    Center 93 | Xd shape: torch.Size([9, 60]) | ntemp: 1
-2026-04-21 17:25:52,909 kilosort.clustering_qr DEBUG    Center 94 | Xd shape: torch.Size([11, 60]) | ntemp: 1
-2026-04-21 17:25:52,909 kilosort.clustering_qr DEBUG    Center 95 | Xd shape: torch.Size([18, 60]) | ntemp: 1
-2026-04-21 17:25:52,913 kilosort.run_kilosort INFO     83 clusters found, in 0.07s; total 48.94s
-2026-04-21 17:25:52,913 kilosort.run_kilosort DEBUG    clu shape: (2442,)
-2026-04-21 17:25:52,913 kilosort.run_kilosort DEBUG    Wall shape: torch.Size([83, 384, 6])
-2026-04-21 17:25:52,913 kilosort.run_kilosort DEBUG    
-2026-04-21 17:25:52,913 kilosort.run_kilosort DEBUG    --------------------
-2026-04-21 17:25:52,913 kilosort.run_kilosort DEBUG    Process thread count: N/A (linux only)
-2026-04-21 17:25:52,913 kilosort.run_kilosort DEBUG    num torch threads: 16
-2026-04-21 17:25:52,913 kilosort.run_kilosort DEBUG    --------------------
+2026-04-27 18:00:45,601 kilosort.run_kilosort INFO     2442 spikes extracted in 3.00s; total 40.13s
+2026-04-27 18:00:45,601 kilosort.run_kilosort DEBUG    st shape: (2442, 3)
+2026-04-27 18:00:45,601 kilosort.run_kilosort DEBUG    tF shape: torch.Size([2442, 10, 6])
+2026-04-27 18:00:45,601 kilosort.run_kilosort DEBUG    iCC shape: torch.Size([10, 384])
+2026-04-27 18:00:45,601 kilosort.run_kilosort DEBUG    iU shape: torch.Size([93])
+2026-04-27 18:00:45,602 kilosort.run_kilosort INFO      
+2026-04-27 18:00:45,602 kilosort.run_kilosort INFO     Resource usage after spike detect (learned)
+2026-04-27 18:00:45,602 kilosort.run_kilosort INFO     ********************************************************
+2026-04-27 18:00:45,602 kilosort.run_kilosort INFO     CPU usage:     0.00 %
+2026-04-27 18:00:45,602 kilosort.run_kilosort INFO     Mem used:     33.90 %     |      21.63 GB
+2026-04-27 18:00:45,602 kilosort.run_kilosort INFO     Mem avail:    42.09 / 63.73 GB
+2026-04-27 18:00:45,602 kilosort.run_kilosort INFO     ------------------------------------------------------
+2026-04-27 18:00:45,602 kilosort.run_kilosort INFO     GPU usage:    N/A
+2026-04-27 18:00:45,602 kilosort.run_kilosort INFO     GPU memory:   N/A
+2026-04-27 18:00:45,602 kilosort.run_kilosort INFO     ********************************************************
+2026-04-27 18:00:46,390 kilosort.run_kilosort INFO      
+2026-04-27 18:00:46,390 kilosort.run_kilosort INFO     Final clustering
+2026-04-27 18:00:46,390 kilosort.run_kilosort INFO     ----------------------------------------
+2026-04-27 18:00:46,393 kilosort.clustering_qr DEBUG    Center 0 | Xd shape: torch.Size([29, 60]) | ntemp: 1
+2026-04-27 18:00:46,394 kilosort.clustering_qr DEBUG    Center 1 | Xd shape: torch.Size([8, 60]) | ntemp: 1
+2026-04-27 18:00:46,395 kilosort.clustering_qr DEBUG    Center 2 | Xd shape: torch.Size([6, 60]) | ntemp: 1
+2026-04-27 18:00:46,395 kilosort.clustering_qr DEBUG    Center 3 | Xd shape: torch.Size([4, 60]) | ntemp: 1
+2026-04-27 18:00:46,396 kilosort.clustering_qr DEBUG    Center 4 | Xd shape: torch.Size([10, 60]) | ntemp: 1
+2026-04-27 18:00:46,396 kilosort.clustering_qr DEBUG    Center 5 | Xd shape: torch.Size([5, 60]) | ntemp: 1
+2026-04-27 18:00:46,396 kilosort.clustering_qr DEBUG    Center 6 | Xd shape: torch.Size([3, 60]) | ntemp: 1
+2026-04-27 18:00:46,397 kilosort.clustering_qr DEBUG    Center 8 | Xd shape: torch.Size([168, 60]) | ntemp: 1
+2026-04-27 18:00:46,397 kilosort.clustering_qr DEBUG    Center 10 | Xd shape: torch.Size([25, 72]) | ntemp: 2
+2026-04-27 18:00:46,398 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:46,398 kilosort.clustering_qr DEBUG    Cluster center: 11 (10/84)
+2026-04-27 18:00:46,398 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,398 kilosort.clustering_qr DEBUG    CPU usage:    39.00 %
+2026-04-27 18:00:46,398 kilosort.clustering_qr DEBUG    Mem used:     34.20 %     |      21.81 GB
+2026-04-27 18:00:46,398 kilosort.clustering_qr DEBUG    Mem avail:    41.92 / 63.73 GB
+2026-04-27 18:00:46,398 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:46,398 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:46,398 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:46,398 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,398 kilosort.clustering_qr DEBUG    Center 11 | Xd shape: torch.Size([16, 60]) | ntemp: 1
+2026-04-27 18:00:46,398 kilosort.clustering_qr DEBUG    Center 12 | Xd shape: torch.Size([11, 60]) | ntemp: 1
+2026-04-27 18:00:46,399 kilosort.clustering_qr DEBUG    Center 13 | Xd shape: torch.Size([17, 60]) | ntemp: 1
+2026-04-27 18:00:46,399 kilosort.clustering_qr DEBUG    Center 14 | Xd shape: torch.Size([28, 60]) | ntemp: 1
+2026-04-27 18:00:46,399 kilosort.clustering_qr DEBUG    Center 15 | Xd shape: torch.Size([5, 60]) | ntemp: 1
+2026-04-27 18:00:46,400 kilosort.clustering_qr DEBUG    Center 16 | Xd shape: torch.Size([22, 60]) | ntemp: 1
+2026-04-27 18:00:46,400 kilosort.clustering_qr DEBUG    Center 17 | Xd shape: torch.Size([3, 60]) | ntemp: 1
+2026-04-27 18:00:46,400 kilosort.clustering_qr DEBUG    Center 18 | Xd shape: torch.Size([14, 60]) | ntemp: 1
+2026-04-27 18:00:46,401 kilosort.clustering_qr DEBUG    Center 19 | Xd shape: torch.Size([9, 60]) | ntemp: 1
+2026-04-27 18:00:46,401 kilosort.clustering_qr DEBUG    Center 20 | Xd shape: torch.Size([54, 60]) | ntemp: 1
+2026-04-27 18:00:46,402 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:46,402 kilosort.clustering_qr DEBUG    Cluster center: 21 (20/84)
+2026-04-27 18:00:46,402 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,402 kilosort.clustering_qr DEBUG    CPU usage:    21.50 %
+2026-04-27 18:00:46,402 kilosort.clustering_qr DEBUG    Mem used:     34.20 %     |      21.81 GB
+2026-04-27 18:00:46,402 kilosort.clustering_qr DEBUG    Mem avail:    41.92 / 63.73 GB
+2026-04-27 18:00:46,402 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:46,402 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:46,402 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:46,402 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,403 kilosort.clustering_qr DEBUG    Center 21 | Xd shape: torch.Size([4, 60]) | ntemp: 1
+2026-04-27 18:00:46,403 kilosort.clustering_qr DEBUG    Center 22 | Xd shape: torch.Size([2, 60]) | ntemp: 1
+2026-04-27 18:00:46,404 kilosort.clustering_qr DEBUG    Center 24 | Xd shape: torch.Size([60, 60]) | ntemp: 1
+2026-04-27 18:00:46,404 kilosort.clustering_qr DEBUG    Center 25 | Xd shape: torch.Size([31, 60]) | ntemp: 1
+2026-04-27 18:00:46,405 kilosort.clustering_qr DEBUG    Center 26 | Xd shape: torch.Size([7, 60]) | ntemp: 1
+2026-04-27 18:00:46,405 kilosort.clustering_qr DEBUG    Center 27 | Xd shape: torch.Size([14, 60]) | ntemp: 1
+2026-04-27 18:00:46,406 kilosort.clustering_qr DEBUG    Center 28 | Xd shape: torch.Size([30, 60]) | ntemp: 1
+2026-04-27 18:00:46,406 kilosort.clustering_qr DEBUG    Center 29 | Xd shape: torch.Size([43, 60]) | ntemp: 1
+2026-04-27 18:00:46,407 kilosort.clustering_qr DEBUG    Center 30 | Xd shape: torch.Size([15, 60]) | ntemp: 1
+2026-04-27 18:00:46,407 kilosort.clustering_qr DEBUG    Center 31 | Xd shape: torch.Size([45, 60]) | ntemp: 1
+2026-04-27 18:00:46,408 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:46,408 kilosort.clustering_qr DEBUG    Cluster center: 33 (30/84)
+2026-04-27 18:00:46,408 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,408 kilosort.clustering_qr DEBUG    CPU usage:     0.00 %
+2026-04-27 18:00:46,408 kilosort.clustering_qr DEBUG    Mem used:     34.20 %     |      21.81 GB
+2026-04-27 18:00:46,408 kilosort.clustering_qr DEBUG    Mem avail:    41.92 / 63.73 GB
+2026-04-27 18:00:46,408 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:46,408 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:46,408 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:46,409 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,409 kilosort.clustering_qr DEBUG    Center 33 | Xd shape: torch.Size([56, 72]) | ntemp: 2
+2026-04-27 18:00:46,410 kilosort.clustering_qr DEBUG    Center 34 | Xd shape: torch.Size([86, 60]) | ntemp: 1
+2026-04-27 18:00:46,411 kilosort.clustering_qr DEBUG    Center 35 | Xd shape: torch.Size([186, 60]) | ntemp: 1
+2026-04-27 18:00:46,412 kilosort.clustering_qr DEBUG    Center 36 | Xd shape: torch.Size([79, 60]) | ntemp: 1
+2026-04-27 18:00:46,413 kilosort.clustering_qr DEBUG    Center 37 | Xd shape: torch.Size([48, 60]) | ntemp: 1
+2026-04-27 18:00:46,413 kilosort.clustering_qr DEBUG    Center 38 | Xd shape: torch.Size([55, 60]) | ntemp: 1
+2026-04-27 18:00:46,413 kilosort.clustering_qr DEBUG    Center 39 | Xd shape: torch.Size([45, 60]) | ntemp: 1
+2026-04-27 18:00:46,414 kilosort.clustering_qr DEBUG    Center 40 | Xd shape: torch.Size([55, 60]) | ntemp: 1
+2026-04-27 18:00:46,414 kilosort.clustering_qr DEBUG    Center 41 | Xd shape: torch.Size([36, 60]) | ntemp: 1
+2026-04-27 18:00:46,415 kilosort.clustering_qr DEBUG    Center 42 | Xd shape: torch.Size([27, 60]) | ntemp: 1
+2026-04-27 18:00:46,416 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:46,416 kilosort.clustering_qr DEBUG    Cluster center: 43 (40/84)
+2026-04-27 18:00:46,416 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,416 kilosort.clustering_qr DEBUG    CPU usage:    90.50 %
+2026-04-27 18:00:46,416 kilosort.clustering_qr DEBUG    Mem used:     34.20 %     |      21.81 GB
+2026-04-27 18:00:46,416 kilosort.clustering_qr DEBUG    Mem avail:    41.91 / 63.73 GB
+2026-04-27 18:00:46,416 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:46,416 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:46,416 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:46,416 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,416 kilosort.clustering_qr DEBUG    Center 43 | Xd shape: torch.Size([10, 60]) | ntemp: 1
+2026-04-27 18:00:46,417 kilosort.clustering_qr DEBUG    Center 44 | Xd shape: torch.Size([33, 60]) | ntemp: 2
+2026-04-27 18:00:46,417 kilosort.clustering_qr DEBUG    Center 46 | Xd shape: torch.Size([32, 60]) | ntemp: 1
+2026-04-27 18:00:46,418 kilosort.clustering_qr DEBUG    Center 47 | Xd shape: torch.Size([20, 60]) | ntemp: 1
+2026-04-27 18:00:46,420 kilosort.clustering_qr DEBUG    Center 48 | Xd shape: torch.Size([2, 60]) | ntemp: 1
+2026-04-27 18:00:46,420 kilosort.clustering_qr DEBUG    Center 49 | Xd shape: torch.Size([7, 60]) | ntemp: 1
+2026-04-27 18:00:46,421 kilosort.clustering_qr DEBUG    Center 52 | Xd shape: torch.Size([3, 60]) | ntemp: 1
+2026-04-27 18:00:46,421 kilosort.clustering_qr DEBUG    Center 53 | Xd shape: torch.Size([14, 72]) | ntemp: 2
+2026-04-27 18:00:46,421 kilosort.clustering_qr DEBUG    Center 54 | Xd shape: torch.Size([88, 60]) | ntemp: 1
+2026-04-27 18:00:46,422 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:46,422 kilosort.clustering_qr DEBUG    Cluster center: 55 (50/84)
+2026-04-27 18:00:46,422 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,422 kilosort.clustering_qr DEBUG    CPU usage:     0.00 %
+2026-04-27 18:00:46,422 kilosort.clustering_qr DEBUG    Mem used:     34.20 %     |      21.81 GB
+2026-04-27 18:00:46,422 kilosort.clustering_qr DEBUG    Mem avail:    41.91 / 63.73 GB
+2026-04-27 18:00:46,422 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:46,422 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:46,422 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:46,422 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,423 kilosort.clustering_qr DEBUG    Center 55 | Xd shape: torch.Size([22, 60]) | ntemp: 1
+2026-04-27 18:00:46,423 kilosort.clustering_qr DEBUG    Center 56 | Xd shape: torch.Size([39, 60]) | ntemp: 1
+2026-04-27 18:00:46,423 kilosort.clustering_qr DEBUG    Center 57 | Xd shape: torch.Size([9, 60]) | ntemp: 1
+2026-04-27 18:00:46,424 kilosort.clustering_qr DEBUG    Center 58 | Xd shape: torch.Size([25, 60]) | ntemp: 1
+2026-04-27 18:00:46,424 kilosort.clustering_qr DEBUG    Center 59 | Xd shape: torch.Size([9, 60]) | ntemp: 1
+2026-04-27 18:00:46,425 kilosort.clustering_qr DEBUG    Center 60 | Xd shape: torch.Size([17, 60]) | ntemp: 1
+2026-04-27 18:00:46,425 kilosort.clustering_qr DEBUG    Center 61 | Xd shape: torch.Size([1, 60]) | ntemp: 1
+2026-04-27 18:00:46,426 kilosort.clustering_qr DEBUG    Center 63 | Xd shape: torch.Size([158, 60]) | ntemp: 1
+2026-04-27 18:00:46,426 kilosort.clustering_qr DEBUG    Center 64 | Xd shape: torch.Size([16, 60]) | ntemp: 1
+2026-04-27 18:00:46,426 kilosort.clustering_qr DEBUG    Center 65 | Xd shape: torch.Size([6, 60]) | ntemp: 1
+2026-04-27 18:00:46,427 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:46,427 kilosort.clustering_qr DEBUG    Cluster center: 66 (60/84)
+2026-04-27 18:00:46,427 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,427 kilosort.clustering_qr DEBUG    CPU usage:     0.00 %
+2026-04-27 18:00:46,427 kilosort.clustering_qr DEBUG    Mem used:     34.20 %     |      21.82 GB
+2026-04-27 18:00:46,427 kilosort.clustering_qr DEBUG    Mem avail:    41.91 / 63.73 GB
+2026-04-27 18:00:46,427 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:46,427 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:46,427 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:46,427 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,427 kilosort.clustering_qr DEBUG    Center 66 | Xd shape: torch.Size([3, 60]) | ntemp: 1
+2026-04-27 18:00:46,428 kilosort.clustering_qr DEBUG    Center 67 | Xd shape: torch.Size([23, 60]) | ntemp: 1
+2026-04-27 18:00:46,428 kilosort.clustering_qr DEBUG    Center 68 | Xd shape: torch.Size([13, 60]) | ntemp: 1
+2026-04-27 18:00:46,428 kilosort.clustering_qr DEBUG    Center 69 | Xd shape: torch.Size([125, 60]) | ntemp: 1
+2026-04-27 18:00:46,429 kilosort.clustering_qr DEBUG    Center 70 | Xd shape: torch.Size([89, 60]) | ntemp: 2
+2026-04-27 18:00:46,429 kilosort.clustering_qr DEBUG    Center 72 | Xd shape: torch.Size([9, 60]) | ntemp: 1
+2026-04-27 18:00:46,430 kilosort.clustering_qr DEBUG    Center 73 | Xd shape: torch.Size([11, 72]) | ntemp: 2
+2026-04-27 18:00:46,430 kilosort.clustering_qr DEBUG    Center 75 | Xd shape: torch.Size([6, 60]) | ntemp: 1
+2026-04-27 18:00:46,430 kilosort.clustering_qr DEBUG    Center 76 | Xd shape: torch.Size([28, 60]) | ntemp: 1
+2026-04-27 18:00:46,431 kilosort.clustering_qr DEBUG    Center 77 | Xd shape: torch.Size([9, 60]) | ntemp: 1
+2026-04-27 18:00:46,431 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:46,431 kilosort.clustering_qr DEBUG    Cluster center: 78 (70/84)
+2026-04-27 18:00:46,431 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,431 kilosort.clustering_qr DEBUG    CPU usage:    84.20 %
+2026-04-27 18:00:46,431 kilosort.clustering_qr DEBUG    Mem used:     34.20 %     |      21.82 GB
+2026-04-27 18:00:46,431 kilosort.clustering_qr DEBUG    Mem avail:    41.91 / 63.73 GB
+2026-04-27 18:00:46,431 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:46,431 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:46,431 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:46,431 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,432 kilosort.clustering_qr DEBUG    Center 78 | Xd shape: torch.Size([4, 60]) | ntemp: 1
+2026-04-27 18:00:46,432 kilosort.clustering_qr DEBUG    Center 80 | Xd shape: torch.Size([5, 72]) | ntemp: 2
+2026-04-27 18:00:46,432 kilosort.clustering_qr DEBUG    Center 81 | Xd shape: torch.Size([16, 60]) | ntemp: 1
+2026-04-27 18:00:46,433 kilosort.clustering_qr DEBUG    Center 82 | Xd shape: torch.Size([6, 60]) | ntemp: 1
+2026-04-27 18:00:46,433 kilosort.clustering_qr DEBUG    Center 83 | Xd shape: torch.Size([2, 60]) | ntemp: 1
+2026-04-27 18:00:46,433 kilosort.clustering_qr DEBUG    Center 84 | Xd shape: torch.Size([4, 60]) | ntemp: 1
+2026-04-27 18:00:46,434 kilosort.clustering_qr DEBUG    Center 86 | Xd shape: torch.Size([45, 60]) | ntemp: 2
+2026-04-27 18:00:46,434 kilosort.clustering_qr DEBUG    Center 88 | Xd shape: torch.Size([62, 72]) | ntemp: 2
+2026-04-27 18:00:46,435 kilosort.clustering_qr DEBUG    Center 89 | Xd shape: torch.Size([47, 60]) | ntemp: 1
+2026-04-27 18:00:46,436 kilosort.clustering_qr DEBUG    Center 90 | Xd shape: torch.Size([4, 60]) | ntemp: 1
+2026-04-27 18:00:46,437 kilosort.clustering_qr DEBUG     
+2026-04-27 18:00:46,437 kilosort.clustering_qr DEBUG    Cluster center: 91 (80/84)
+2026-04-27 18:00:46,437 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,437 kilosort.clustering_qr DEBUG    CPU usage:     0.00 %
+2026-04-27 18:00:46,437 kilosort.clustering_qr DEBUG    Mem used:     34.20 %     |      21.82 GB
+2026-04-27 18:00:46,437 kilosort.clustering_qr DEBUG    Mem avail:    41.91 / 63.73 GB
+2026-04-27 18:00:46,437 kilosort.clustering_qr DEBUG    ------------------------------------------------------
+2026-04-27 18:00:46,437 kilosort.clustering_qr DEBUG    GPU usage:    N/A
+2026-04-27 18:00:46,437 kilosort.clustering_qr DEBUG    GPU memory:   N/A
+2026-04-27 18:00:46,437 kilosort.clustering_qr DEBUG    ********************************************************
+2026-04-27 18:00:46,437 kilosort.clustering_qr DEBUG    Center 91 | Xd shape: torch.Size([16, 60]) | ntemp: 1
+2026-04-27 18:00:46,438 kilosort.clustering_qr DEBUG    Center 92 | Xd shape: torch.Size([5, 60]) | ntemp: 1
+2026-04-27 18:00:46,438 kilosort.clustering_qr DEBUG    Center 93 | Xd shape: torch.Size([9, 60]) | ntemp: 1
+2026-04-27 18:00:46,438 kilosort.clustering_qr DEBUG    Center 94 | Xd shape: torch.Size([11, 60]) | ntemp: 1
+2026-04-27 18:00:46,439 kilosort.clustering_qr DEBUG    Center 95 | Xd shape: torch.Size([18, 60]) | ntemp: 1
+2026-04-27 18:00:46,441 kilosort.run_kilosort INFO     83 clusters found, in 0.05s; total 40.97s
+2026-04-27 18:00:46,441 kilosort.run_kilosort DEBUG    clu shape: (2442,)
+2026-04-27 18:00:46,441 kilosort.run_kilosort DEBUG    Wall shape: torch.Size([83, 384, 6])
+2026-04-27 18:00:46,441 kilosort.run_kilosort DEBUG    
+2026-04-27 18:00:46,441 kilosort.run_kilosort DEBUG    --------------------
+2026-04-27 18:00:46,441 kilosort.run_kilosort DEBUG    Process thread count: N/A (linux only)
+2026-04-27 18:00:46,441 kilosort.run_kilosort DEBUG    num torch threads: 16
+2026-04-27 18:00:46,441 kilosort.run_kilosort DEBUG    --------------------
 
-2026-04-21 17:25:52,913 kilosort.run_kilosort INFO      
-2026-04-21 17:25:52,913 kilosort.run_kilosort INFO     Merging clusters
-2026-04-21 17:25:52,913 kilosort.run_kilosort INFO     ----------------------------------------
-2026-04-21 17:25:55,026 kilosort.run_kilosort INFO     83 units found, in 2.11s; total 51.05s
-2026-04-21 17:25:55,026 kilosort.run_kilosort DEBUG    clu shape: (2442,)
-2026-04-21 17:25:55,026 kilosort.run_kilosort DEBUG    Wall shape: torch.Size([83, 384, 6])
-2026-04-21 17:25:55,027 kilosort.run_kilosort INFO      
-2026-04-21 17:25:55,027 kilosort.run_kilosort INFO     Resource usage after clustering
-2026-04-21 17:25:55,027 kilosort.run_kilosort INFO     ********************************************************
-2026-04-21 17:25:55,027 kilosort.run_kilosort INFO     CPU usage:     0.00 %
-2026-04-21 17:25:55,027 kilosort.run_kilosort INFO     Mem used:     97.90 %     |      30.85 GB
-2026-04-21 17:25:55,027 kilosort.run_kilosort INFO     Mem avail:     0.66 / 31.51 GB
-2026-04-21 17:25:55,027 kilosort.run_kilosort INFO     ------------------------------------------------------
-2026-04-21 17:25:55,027 kilosort.run_kilosort INFO     GPU usage:    N/A
-2026-04-21 17:25:55,027 kilosort.run_kilosort INFO     GPU memory:   N/A
-2026-04-21 17:25:55,027 kilosort.run_kilosort INFO     ********************************************************
-2026-04-21 17:25:55,027 kilosort.run_kilosort INFO      
-2026-04-21 17:25:55,027 kilosort.run_kilosort INFO     Saving to phy and computing refractory periods
-2026-04-21 17:25:55,027 kilosort.run_kilosort INFO     ----------------------------------------
-2026-04-21 17:25:55,045 kilosort.io  DEBUG     
-2026-04-21 17:25:55,046 kilosort.io  DEBUG    save_to_phy, whitening
-2026-04-21 17:25:55,046 kilosort.io  DEBUG    ********************************************************
-2026-04-21 17:25:55,046 kilosort.io  DEBUG    CPU usage:    90.90 %
-2026-04-21 17:25:55,046 kilosort.io  DEBUG    Mem used:     97.90 %     |      30.86 GB
-2026-04-21 17:25:55,046 kilosort.io  DEBUG    Mem avail:     0.65 / 31.51 GB
-2026-04-21 17:25:55,046 kilosort.io  DEBUG    ------------------------------------------------------
-2026-04-21 17:25:55,046 kilosort.io  DEBUG    GPU usage:    N/A
-2026-04-21 17:25:55,046 kilosort.io  DEBUG    GPU memory:   N/A
-2026-04-21 17:25:55,046 kilosort.io  DEBUG    ********************************************************
-2026-04-21 17:25:55,052 kilosort.io  DEBUG     
-2026-04-21 17:25:55,052 kilosort.io  DEBUG    save_to_phy, spike positions
-2026-04-21 17:25:55,052 kilosort.io  DEBUG    ********************************************************
-2026-04-21 17:25:55,052 kilosort.io  DEBUG    CPU usage:    90.00 %
-2026-04-21 17:25:55,052 kilosort.io  DEBUG    Mem used:     97.90 %     |      30.86 GB
-2026-04-21 17:25:55,052 kilosort.io  DEBUG    Mem avail:     0.65 / 31.51 GB
-2026-04-21 17:25:55,052 kilosort.io  DEBUG    ------------------------------------------------------
-2026-04-21 17:25:55,052 kilosort.io  DEBUG    GPU usage:    N/A
-2026-04-21 17:25:55,052 kilosort.io  DEBUG    GPU memory:   N/A
-2026-04-21 17:25:55,052 kilosort.io  DEBUG    ********************************************************
-2026-04-21 17:25:55,066 kilosort.io  DEBUG     
-2026-04-21 17:25:55,066 kilosort.io  DEBUG    save_to_phy, remove duplicates
-2026-04-21 17:25:55,066 kilosort.io  DEBUG    ********************************************************
-2026-04-21 17:25:55,066 kilosort.io  DEBUG    CPU usage:    90.90 %
-2026-04-21 17:25:55,066 kilosort.io  DEBUG    Mem used:     97.90 %     |      30.86 GB
-2026-04-21 17:25:55,066 kilosort.io  DEBUG    Mem avail:     0.65 / 31.51 GB
-2026-04-21 17:25:55,066 kilosort.io  DEBUG    ------------------------------------------------------
-2026-04-21 17:25:55,066 kilosort.io  DEBUG    GPU usage:    N/A
-2026-04-21 17:25:55,066 kilosort.io  DEBUG    GPU memory:   N/A
-2026-04-21 17:25:55,066 kilosort.io  DEBUG    ********************************************************
-2026-04-21 17:25:55,169 kilosort.io  DEBUG     
-2026-04-21 17:25:55,169 kilosort.io  DEBUG    save_to_phy, template props
-2026-04-21 17:25:55,169 kilosort.io  DEBUG    ********************************************************
-2026-04-21 17:25:55,169 kilosort.io  DEBUG    CPU usage:    75.40 %
-2026-04-21 17:25:55,169 kilosort.io  DEBUG    Mem used:     97.90 %     |      30.86 GB
-2026-04-21 17:25:55,169 kilosort.io  DEBUG    Mem avail:     0.65 / 31.51 GB
-2026-04-21 17:25:55,169 kilosort.io  DEBUG    ------------------------------------------------------
-2026-04-21 17:25:55,169 kilosort.io  DEBUG    GPU usage:    N/A
-2026-04-21 17:25:55,169 kilosort.io  DEBUG    GPU memory:   N/A
-2026-04-21 17:25:55,169 kilosort.io  DEBUG    ********************************************************
-2026-04-21 17:25:55,210 kilosort.io  DEBUG     
-2026-04-21 17:25:55,211 kilosort.io  DEBUG    save_to_phy, pc features
-2026-04-21 17:25:55,211 kilosort.io  DEBUG    ********************************************************
-2026-04-21 17:25:55,211 kilosort.io  DEBUG    CPU usage:    89.40 %
-2026-04-21 17:25:55,211 kilosort.io  DEBUG    Mem used:     98.00 %     |      30.87 GB
-2026-04-21 17:25:55,211 kilosort.io  DEBUG    Mem avail:     0.64 / 31.51 GB
-2026-04-21 17:25:55,211 kilosort.io  DEBUG    ------------------------------------------------------
-2026-04-21 17:25:55,211 kilosort.io  DEBUG    GPU usage:    N/A
-2026-04-21 17:25:55,211 kilosort.io  DEBUG    GPU memory:   N/A
-2026-04-21 17:25:55,211 kilosort.io  DEBUG    ********************************************************
-2026-04-21 17:25:55,225 kilosort.io  DEBUG     
-2026-04-21 17:25:55,226 kilosort.io  DEBUG    save_to_phy, est contam
-2026-04-21 17:25:55,226 kilosort.io  DEBUG    ********************************************************
-2026-04-21 17:25:55,226 kilosort.io  DEBUG    CPU usage:    91.30 %
-2026-04-21 17:25:55,226 kilosort.io  DEBUG    Mem used:     97.90 %     |      30.86 GB
-2026-04-21 17:25:55,226 kilosort.io  DEBUG    Mem avail:     0.65 / 31.51 GB
-2026-04-21 17:25:55,226 kilosort.io  DEBUG    ------------------------------------------------------
-2026-04-21 17:25:55,226 kilosort.io  DEBUG    GPU usage:    N/A
-2026-04-21 17:25:55,226 kilosort.io  DEBUG    GPU memory:   N/A
-2026-04-21 17:25:55,226 kilosort.io  DEBUG    ********************************************************
-2026-04-21 17:25:55,240 kilosort.run_kilosort INFO     36 units found with good refractory periods
-2026-04-21 17:25:55,241 kilosort.run_kilosort INFO     Exporting to Phy took: 0.21s
-2026-04-21 17:25:55,241 kilosort.run_kilosort INFO     Total runtime: 51.27s = 00:00:51 h:m:s
-2026-04-21 17:25:55,246 kilosort.run_kilosort INFO     Sorting output saved in: C:\Users\Jzimi\git-repos\course-ephys-osss\book\kilosort4_output\sorter_output.
-2026-04-21 17:25:55,247 kilosort.run_kilosort INFO      
-2026-04-21 17:25:55,247 kilosort.run_kilosort INFO     Resource usage after saving
-2026-04-21 17:25:55,247 kilosort.run_kilosort INFO     ********************************************************
-2026-04-21 17:25:55,247 kilosort.run_kilosort INFO     CPU usage:     0.00 %
-2026-04-21 17:25:55,247 kilosort.run_kilosort INFO     Mem used:     97.90 %     |      30.86 GB
-2026-04-21 17:25:55,247 kilosort.run_kilosort INFO     Mem avail:     0.65 / 31.51 GB
-2026-04-21 17:25:55,248 kilosort.run_kilosort INFO     ------------------------------------------------------
-2026-04-21 17:25:55,248 kilosort.run_kilosort INFO     GPU usage:    N/A
-2026-04-21 17:25:55,248 kilosort.run_kilosort INFO     GPU memory:   N/A
-2026-04-21 17:25:55,248 kilosort.run_kilosort INFO     ********************************************************
+2026-04-27 18:00:46,441 kilosort.run_kilosort INFO      
+2026-04-27 18:00:46,441 kilosort.run_kilosort INFO     Merging clusters
+2026-04-27 18:00:46,441 kilosort.run_kilosort INFO     ----------------------------------------
+2026-04-27 18:00:48,115 kilosort.run_kilosort INFO     83 units found, in 1.67s; total 42.65s
+2026-04-27 18:00:48,115 kilosort.run_kilosort DEBUG    clu shape: (2442,)
+2026-04-27 18:00:48,115 kilosort.run_kilosort DEBUG    Wall shape: torch.Size([83, 384, 6])
+2026-04-27 18:00:48,116 kilosort.run_kilosort INFO      
+2026-04-27 18:00:48,116 kilosort.run_kilosort INFO     Resource usage after clustering
+2026-04-27 18:00:48,116 kilosort.run_kilosort INFO     ********************************************************
+2026-04-27 18:00:48,116 kilosort.run_kilosort INFO     CPU usage:     0.00 %
+2026-04-27 18:00:48,116 kilosort.run_kilosort INFO     Mem used:     34.30 %     |      21.88 GB
+2026-04-27 18:00:48,116 kilosort.run_kilosort INFO     Mem avail:    41.85 / 63.73 GB
+2026-04-27 18:00:48,116 kilosort.run_kilosort INFO     ------------------------------------------------------
+2026-04-27 18:00:48,116 kilosort.run_kilosort INFO     GPU usage:    N/A
+2026-04-27 18:00:48,116 kilosort.run_kilosort INFO     GPU memory:   N/A
+2026-04-27 18:00:48,116 kilosort.run_kilosort INFO     ********************************************************
+2026-04-27 18:00:48,116 kilosort.run_kilosort INFO      
+2026-04-27 18:00:48,116 kilosort.run_kilosort INFO     Saving to phy and computing refractory periods
+2026-04-27 18:00:48,116 kilosort.run_kilosort INFO     ----------------------------------------
+2026-04-27 18:00:48,125 kilosort.io  DEBUG     
+2026-04-27 18:00:48,126 kilosort.io  DEBUG    save_to_phy, whitening
+2026-04-27 18:00:48,126 kilosort.io  DEBUG    ********************************************************
+2026-04-27 18:00:48,126 kilosort.io  DEBUG    CPU usage:    96.60 %
+2026-04-27 18:00:48,126 kilosort.io  DEBUG    Mem used:     34.30 %     |      21.88 GB
+2026-04-27 18:00:48,126 kilosort.io  DEBUG    Mem avail:    41.84 / 63.73 GB
+2026-04-27 18:00:48,126 kilosort.io  DEBUG    ------------------------------------------------------
+2026-04-27 18:00:48,126 kilosort.io  DEBUG    GPU usage:    N/A
+2026-04-27 18:00:48,126 kilosort.io  DEBUG    GPU memory:   N/A
+2026-04-27 18:00:48,126 kilosort.io  DEBUG    ********************************************************
+2026-04-27 18:00:48,128 kilosort.io  DEBUG     
+2026-04-27 18:00:48,128 kilosort.io  DEBUG    save_to_phy, spike positions
+2026-04-27 18:00:48,128 kilosort.io  DEBUG    ********************************************************
+2026-04-27 18:00:48,128 kilosort.io  DEBUG    CPU usage:     0.00 %
+2026-04-27 18:00:48,128 kilosort.io  DEBUG    Mem used:     34.30 %     |      21.88 GB
+2026-04-27 18:00:48,128 kilosort.io  DEBUG    Mem avail:    41.84 / 63.73 GB
+2026-04-27 18:00:48,128 kilosort.io  DEBUG    ------------------------------------------------------
+2026-04-27 18:00:48,129 kilosort.io  DEBUG    GPU usage:    N/A
+2026-04-27 18:00:48,129 kilosort.io  DEBUG    GPU memory:   N/A
+2026-04-27 18:00:48,129 kilosort.io  DEBUG    ********************************************************
+2026-04-27 18:00:48,135 kilosort.io  DEBUG     
+2026-04-27 18:00:48,135 kilosort.io  DEBUG    save_to_phy, remove duplicates
+2026-04-27 18:00:48,135 kilosort.io  DEBUG    ********************************************************
+2026-04-27 18:00:48,135 kilosort.io  DEBUG    CPU usage:    81.80 %
+2026-04-27 18:00:48,135 kilosort.io  DEBUG    Mem used:     34.30 %     |      21.88 GB
+2026-04-27 18:00:48,135 kilosort.io  DEBUG    Mem avail:    41.84 / 63.73 GB
+2026-04-27 18:00:48,135 kilosort.io  DEBUG    ------------------------------------------------------
+2026-04-27 18:00:48,135 kilosort.io  DEBUG    GPU usage:    N/A
+2026-04-27 18:00:48,135 kilosort.io  DEBUG    GPU memory:   N/A
+2026-04-27 18:00:48,135 kilosort.io  DEBUG    ********************************************************
+2026-04-27 18:00:48,208 kilosort.io  DEBUG     
+2026-04-27 18:00:48,208 kilosort.io  DEBUG    save_to_phy, template props
+2026-04-27 18:00:48,208 kilosort.io  DEBUG    ********************************************************
+2026-04-27 18:00:48,209 kilosort.io  DEBUG    CPU usage:    75.80 %
+2026-04-27 18:00:48,209 kilosort.io  DEBUG    Mem used:     34.40 %     |      21.90 GB
+2026-04-27 18:00:48,209 kilosort.io  DEBUG    Mem avail:    41.83 / 63.73 GB
+2026-04-27 18:00:48,209 kilosort.io  DEBUG    ------------------------------------------------------
+2026-04-27 18:00:48,209 kilosort.io  DEBUG    GPU usage:    N/A
+2026-04-27 18:00:48,209 kilosort.io  DEBUG    GPU memory:   N/A
+2026-04-27 18:00:48,209 kilosort.io  DEBUG    ********************************************************
+2026-04-27 18:00:48,230 kilosort.io  DEBUG     
+2026-04-27 18:00:48,230 kilosort.io  DEBUG    save_to_phy, pc features
+2026-04-27 18:00:48,230 kilosort.io  DEBUG    ********************************************************
+2026-04-27 18:00:48,230 kilosort.io  DEBUG    CPU usage:    77.10 %
+2026-04-27 18:00:48,230 kilosort.io  DEBUG    Mem used:     34.40 %     |      21.90 GB
+2026-04-27 18:00:48,230 kilosort.io  DEBUG    Mem avail:    41.83 / 63.73 GB
+2026-04-27 18:00:48,230 kilosort.io  DEBUG    ------------------------------------------------------
+2026-04-27 18:00:48,230 kilosort.io  DEBUG    GPU usage:    N/A
+2026-04-27 18:00:48,230 kilosort.io  DEBUG    GPU memory:   N/A
+2026-04-27 18:00:48,230 kilosort.io  DEBUG    ********************************************************
+2026-04-27 18:00:48,235 kilosort.io  DEBUG     
+2026-04-27 18:00:48,235 kilosort.io  DEBUG    save_to_phy, est contam
+2026-04-27 18:00:48,235 kilosort.io  DEBUG    ********************************************************
+2026-04-27 18:00:48,235 kilosort.io  DEBUG    CPU usage:     0.00 %
+2026-04-27 18:00:48,235 kilosort.io  DEBUG    Mem used:     34.40 %     |      21.90 GB
+2026-04-27 18:00:48,235 kilosort.io  DEBUG    Mem avail:    41.83 / 63.73 GB
+2026-04-27 18:00:48,235 kilosort.io  DEBUG    ------------------------------------------------------
+2026-04-27 18:00:48,236 kilosort.io  DEBUG    GPU usage:    N/A
+2026-04-27 18:00:48,236 kilosort.io  DEBUG    GPU memory:   N/A
+2026-04-27 18:00:48,236 kilosort.io  DEBUG    ********************************************************
+2026-04-27 18:00:48,238 kilosort.run_kilosort INFO     36 units found with good refractory periods
+2026-04-27 18:00:48,239 kilosort.run_kilosort INFO     Exporting to Phy took: 0.12s
+2026-04-27 18:00:48,239 kilosort.run_kilosort INFO     Total runtime: 42.77s = 00:00:43 h:m:s
+2026-04-27 18:00:48,241 kilosort.run_kilosort INFO     Sorting output saved in: C:\Users\Joe\work\git-repos\course-ephys-osss\book\kilosort4_output\sorter_output.
+2026-04-27 18:00:48,242 kilosort.run_kilosort INFO      
+2026-04-27 18:00:48,242 kilosort.run_kilosort INFO     Resource usage after saving
+2026-04-27 18:00:48,242 kilosort.run_kilosort INFO     ********************************************************
+2026-04-27 18:00:48,242 kilosort.run_kilosort INFO     CPU usage:     0.00 %
+2026-04-27 18:00:48,242 kilosort.run_kilosort INFO     Mem used:     34.40 %     |      21.90 GB
+2026-04-27 18:00:48,242 kilosort.run_kilosort INFO     Mem avail:    41.83 / 63.73 GB
+2026-04-27 18:00:48,242 kilosort.run_kilosort INFO     ------------------------------------------------------
+2026-04-27 18:00:48,242 kilosort.run_kilosort INFO     GPU usage:    N/A
+2026-04-27 18:00:48,242 kilosort.run_kilosort INFO     GPU memory:   N/A
+2026-04-27 18:00:48,242 kilosort.run_kilosort INFO     ********************************************************

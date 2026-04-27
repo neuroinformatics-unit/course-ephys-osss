@@ -1,27 +1,27 @@
 {
     "class": "spikeinterface.preprocessing.common_reference.CommonReferenceRecording",
     "module": "spikeinterface",
-    "version": "0.104.2",
+    "version": "0.104.1",
     "kwargs": {
         "recording": {
             "class": "spikeinterface.preprocessing.filter.BandpassFilterRecording",
             "module": "spikeinterface",
-            "version": "0.104.2",
+            "version": "0.104.1",
             "kwargs": {
                 "recording": {
                     "class": "spikeinterface.preprocessing.phase_shift.PhaseShiftRecording",
                     "module": "spikeinterface",
-                    "version": "0.104.2",
+                    "version": "0.104.1",
                     "kwargs": {
                         "recording": {
                             "class": "spikeinterface.extractors.neoextractors.spikeglx.SpikeGLXRecordingExtractor",
                             "module": "spikeinterface",
-                            "version": "0.104.2",
+                            "version": "0.104.1",
                             "kwargs": {
                                 "all_annotations": false,
                                 "stream_id": "imec0.ap",
                                 "use_names_as_ids": false,
-                                "folder_path": "C:\\Users\\Jzimi\\git-repos\\course-ephys-osss\\book\\data\\pipeline-walkthrough",
+                                "folder_path": "C:\\Users\\Joe\\work\\git-repos\\course-ephys-osss\\book\\data\\pipeline-walkthrough",
                                 "load_sync_channel": false
                             },
                             "annotations": {
