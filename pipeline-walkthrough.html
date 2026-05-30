@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Pipeline walkthrough with SpikeInterface – OSSS Ephys Course 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./concept-notes.html" rel="next">
+<link href="./introduction.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-48abc47ddc2cbc14860ddec9e9fdb395.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./pipeline-walkthrough.html">Pipeline walkthrough with SpikeInterface</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">OSSS Ephys Course 2026</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pipeline-walkthrough.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Pipeline walkthrough with SpikeInterface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./concept-notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concept Notes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./planning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Course Planning (temp, to remove)</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#data-loading-and-exploration" id="toc-data-loading-and-exploration" class="nav-link active" data-scroll-target="#data-loading-and-exploration">Data Loading and Exploration</a>
+  <ul class="collapse">
+  <li><a href="#data-loading" id="toc-data-loading" class="nav-link" data-scroll-target="#data-loading">Data Loading</a></li>
+  <li><a href="#the-recording-object" id="toc-the-recording-object" class="nav-link" data-scroll-target="#the-recording-object">The Recording object</a></li>
+  <li><a href="#visualising-the-probe" id="toc-visualising-the-probe" class="nav-link" data-scroll-target="#visualising-the-probe">Visualising the probe</a></li>
+  <li><a href="#visualising-the-data" id="toc-visualising-the-data" class="nav-link" data-scroll-target="#visualising-the-data">Visualising the data</a></li>
+  </ul></li>
+  <li><a href="#preprocessing" id="toc-preprocessing" class="nav-link" data-scroll-target="#preprocessing">Preprocessing</a>
+  <ul class="collapse">
+  <li><a href="#splitting-the-data-by-shank" id="toc-splitting-the-data-by-shank" class="nav-link" data-scroll-target="#splitting-the-data-by-shank">Splitting the data by shank</a></li>
+  </ul></li>
+  <li><a href="#sorting" id="toc-sorting" class="nav-link" data-scroll-target="#sorting">Sorting</a></li>
+  <li><a href="#postprocessing" id="toc-postprocessing" class="nav-link" data-scroll-target="#postprocessing">Postprocessing</a>
+  <ul class="collapse">
+  <li><a href="#creating-a-sortinganalzyer" id="toc-creating-a-sortinganalzyer" class="nav-link" data-scroll-target="#creating-a-sortinganalzyer">Creating a <code>SortingAnalzyer</code></a></li>
+  <li><a href="#selecting-spikes" id="toc-selecting-spikes" class="nav-link" data-scroll-target="#selecting-spikes">Selecting spikes</a></li>
+  <li><a href="#waveforms" id="toc-waveforms" class="nav-link" data-scroll-target="#waveforms">Waveforms</a></li>
+  <li><a href="#templates" id="toc-templates" class="nav-link" data-scroll-target="#templates">Templates</a></li>
+  <li><a href="#amplitudes" id="toc-amplitudes" class="nav-link" data-scroll-target="#amplitudes">Amplitudes</a></li>
+  </ul></li>
+  <li><a href="#manual-curation-in-spikeinterface-gui" id="toc-manual-curation-in-spikeinterface-gui" class="nav-link" data-scroll-target="#manual-curation-in-spikeinterface-gui">Manual Curation in spikeinterface-gui</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Pipeline walkthrough with SpikeInterface</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><br>
+In this chapter, we will implement a spike sorting pipeline from start to finish, using SpikeInterface. We will go through the key steps at a high level here, and develop the theory and add more complex methods and use cases in the following chapters.</p>
+<p>In this walkthrough, we will use a short example dataset available for download <a href="">here</a>. This dataset contains 2.5 seconds of data recorded on 384 channels, with channels located on the middle two shanks of a 4-shank Neuropixels probe, acquired in SpikeGLX.</p>
+<p>We will load and preprocess the data, run spike sorting and compute quality metrics for assessing the sorting output.</p>
+<p>Let’s get started!</p>
+<section id="data-loading-and-exploration" class="level2">
+<h2 class="anchored" data-anchor-id="data-loading-and-exploration">Data Loading and Exploration</h2>
+<section id="data-loading" class="level3">
+<h3 class="anchored" data-anchor-id="data-loading">Data Loading</h3>
+<p>First, we will load the data, currently saved on our hard drive, into Python.</p>
+<p>SpikeInterface can load data from many different types of acquisition systems, using functions within its <a href="https://spikeinterface.readthedocs.io/en/stable/modules/extractors.html">extractors module</a>. As our data is from SpikeGLX, we will use the <code>read_spikeglx</code> method.</p>
+<p>We need to tell SpikeInterface where the data is, and what <a href="./concept-notes.html#spikeglx-streams">data stream</a>💡 we want to load. A stream refers to a continuous recording of voltage signals from a specific set of channels, sampled at a fixed rate. SpikeGLX saves different streams to separate files depending on the frequency band and channel type. Streams written by SpikeGLX can include the action potential (AP) band, local field potential (LF) band and a sync stream (depending on the version).</p>
+<p>Because we want to load the AP data stream for spike sorting, we pass <code>"imec0.ap"</code>.</p>
+<div id="a55fd011" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spikeinterface.extractors <span class="im">as</span> si_extractors</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This should be the path to the folder containing</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the data. On Windows, you may need to prepend</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># r to the string e.g. r"C:\my\path"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>path_to_data_folder <span class="op">=</span> <span class="st">"data/pipeline-walkthrough"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>recording <span class="op">=</span> si_extractors.read_spikeglx(</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    path_to_data_folder,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    stream_id<span class="op">=</span><span class="st">"imec0.ap"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(recording)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>SpikeGLXRecordingExtractor: 384 channels - 30.0kHz - 1 segments - 75,000 samples - 2.50s 
+                            int16 dtype - 54.93 MiB</code></pre>
+</div>
+</div>
+<p>SpikeInterface uses ‘lazy loading’, which means at this stage no data is actually loaded into memory. Data is only loaded when we request it (e.g.&nbsp;for visualisation, or spike sorting) and only the requested chunk is loaded. This makes operations very fast as we do not need to load large recordings up-front.</p>
+</section>
+<section id="the-recording-object" class="level3">
+<h3 class="anchored" data-anchor-id="the-recording-object">The Recording object</h3>
+<p>SpikeInterface extractor functions return the recording as a <a href="https://www.geeksforgeeks.org/python/python-classes-and-objects/">Python object</a>, which contains many useful methods for exploring the recording metadata as well as accessing the underlying data. In our case, recording is a <code>SpikeGLXRecordingExtractor</code> recording object.</p>
+<p>The <a href="https://spikeinterface.readthedocs.io/en/latest/api.html">SpikeInterface API Documentation</a> is a useful resource for looking up methods associated with an object and their arguments. In Spikeinterface, all recordings <a href="./concept-notes.html#inheritence">inherit</a>💡 from the <code>BaseRecording</code>, so checking out the <a href="https://spikeinterface.readthedocs.io/en/latest/api.html#spikeinterface.core.BaseRecording">API docs for BaseRecording</a> gives us iformation about all recording objects.</p>
+<p>You can also use Python’s <code>dir()</code> functoin to see all attributes and methods associated with any Python object.</p>
+<div id="ed385f77" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    [method <span class="cf">for</span> method <span class="kw">in</span> <span class="bu">dir</span>(recording) <span class="cf">if</span> method.startswith(<span class="st">"get"</span>)]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['get_annotation', 'get_annotation_keys', 'get_binary_description', 'get_channel_gains', 'get_channel_groups', 'get_channel_ids', 'get_channel_locations', 'get_channel_offsets', 'get_channel_property', 'get_dtype', 'get_duration', 'get_end_time', 'get_memory_size', 'get_neo_io_reader', 'get_num_blocks', 'get_num_channels', 'get_num_frames', 'get_num_samples', 'get_num_segments', 'get_parent', 'get_preferred_mp_context', 'get_probe', 'get_probegroup', 'get_probes', 'get_property', 'get_property_keys', 'get_sampling_frequency', 'get_start_time', 'get_streams', 'get_time_info', 'get_times', 'get_total_duration', 'get_total_memory_size', 'get_total_samples', 'get_traces']</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Things to try
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a good time to explore the recording object using the API docs. Have a go at the following:</p>
+<ul>
+<li>Print the locations of all channels on the probe.</li>
+<li>Print the time vector associated with the recording.</li>
+<li>Use <code>get_traces()</code> to retrieve a segment of raw data as a NumPy array. What are its dimensions?</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="visualising-the-probe" class="level3">
+<h3 class="anchored" data-anchor-id="visualising-the-probe">Visualising the probe</h3>
+<p>There are many brands of recording probes used in extracellular electrophysiology (e.g.&nbsp; <a href="https://www.neuropixels.org/">Neuropixels</a>, <a href="https://www.cambridgeneurotech.com/neural-probes">Cambridge Neurotech</a> or <a href="https://www.neuronexus.com/products/electrode-arrays/">NeuroNexus</a> ). There are many models, which come in complex and varied geometries and channel arangements</p>
+<p>Under the hood, SpikeInterface uses the ProbeInterface package to load many different types of probe. In our case, it automatically identifie and loaded a Neuropixels 2 (NP2) probe.</p>
+<p>It is important to check that the probe has loaded as expected, and that the geometry matches how it was set up in your acquisition software. We can plot the probe to confirm it loaded correctly:</p>
+<div id="774d5b97" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> probeinterface.plotting <span class="im">import</span> plot_probe</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>probe <span class="op">=</span> recording.get_probe()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plot_probe(probe)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pipeline-walkthrough_files/figure-html/cell-4-output-1.png" width="473" height="458" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As expected, we have a 4-shank Neurpixels probe in which all the recording channels are located in the middle two shanks. The argument <a href="https://probeinterface.readthedocs.io/en/main/api.html#probeinterface.plotting.plot_probe"><code>show_contact_ids</code></a> can also be used to display the contact IDs, to double check the exact location of each contact.</p>
+</section>
+<section id="visualising-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="visualising-the-data">Visualising the data</h3>
+<p>Electrophysiological recordings are susceptible to contamination from multiple noise sources: electrical interference, mechanical noise caused by probe movement, and artefacts arising from hardware defects or poor contact.</p>
+<p>As such, it is important to visualise the data, especially after preprocessing, to check the data quality. First, lets’s plot one second of data from our raw recording:</p>
+<div id="e648bb8a" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spikeinterface.widgets <span class="im">as</span> si_widgets</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> recording.get_times()[<span class="dv">0</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>si_widgets.plot_traces(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    recording,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    time_range<span class="op">=</span>(start_time, start_time <span class="op">+</span> <span class="fl">0.1</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    return_in_uV<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    order_channel_by_depth<span class="op">=</span><span class="va">True</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pipeline-walkthrough_files/figure-html/cell-5-output-1.png" width="582" height="416" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>return_in_uV</code> to ensure the data is returned in interpretable units (microvolts), as by default most electrophysiological recordings are <a href="./concept-notes.html#data-storage-in-int16-and-scaling-to-uv">stored as unitless <code>int16</code> values</a>💡.</p>
+<p><code>order_channel_by_depth</code> is used as the default ordering of channels on the probe is not always by depth, meaning the order is scrambled on the plot.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In general when working with raw data, you can use <a href="https://spikeinterface.readthedocs.io/en/latest/api.html#spikeinterface.core.BaseRecording.get_channel_locations"><code>recording.get_channel_locations()</code></a> to inspect the default channel ordering of the channels, and <a href="https://spikeinterface.readthedocs.io/en/stable/api.html#spikeinterface.core.order_channels_by_depth"><code>order_channels_by_depth()</code></a> function can be used to get the indicies for reordering.</p>
+</div>
+</div>
+<p>As we can see - the raw data looks terrible! It is severely contaminated, mostly by electrical noise. We will need to preprocess it to tidy it up.</p>
+</section>
+</section>
+<section id="preprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="preprocessing">Preprocessing</h2>
+<p>Below, we will apply three key preprocessing steps:</p>
+<p><strong>phase_shift</strong> : corrects a hardware artefact in the Neuropixels probe which causes small shifts between the recording time across nearby channels.</p>
+<p><strong>bandpass_filter</strong> : removes high and low frequency oscillations from the data. It is applied to each channel separately.</p>
+<p><strong>commmon_reference</strong> : removes noise spikes that appear as verticle stripes across the data. It is applied across channels separately at each timepoint.</p>
+<p>To preprocess the data, we will pass our recording object into functions that return a new, recording object. e.g.&nbsp;<code>filtered_recording = bandpass_filter(recording)</code>. We can do this for every step in the preprocessing chain:</p>
+<div id="85a01cc9" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spikeinterface.preprocessing <span class="im">as</span> si_prepro</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>phase_shift_recording <span class="op">=</span> si_prepro.phase_shift(recording)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>filtered_recording <span class="op">=</span> si_prepro.bandpass_filter(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    phase_shift_recording, freq_min<span class="op">=</span><span class="dv">300</span>, freq_max<span class="op">=</span><span class="dv">6000</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>cmr_recording <span class="op">=</span> si_prepro.common_reference(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    filtered_recording, operator<span class="op">=</span><span class="st">"median"</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>In SpikeInterface, the preprocessing is applied almost instantly due to the ‘lazy’ loading mentioned earlier. When we apply the preprocessing function, we only really just change the metadata associated with the recording, the data is not actually changed at this stage.</p>
+<p>Only when we get the data (e.g.&nbsp;in <code>plot_traces</code>, or with <code>get_traces()</code> or when saving the data) is the data preprocessed in the requested chunk. This makes operating very fast!</p>
+<p>Now we are ready to plot the data:</p>
+<div id="fb8db820" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>si_widgets.plot_traces(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    cmr_recording,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    time_range<span class="op">=</span>(start_time, start_time <span class="op">+</span> <span class="fl">0.1</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    return_in_uV<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    order_channel_by_depth<span class="op">=</span><span class="va">True</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pipeline-walkthrough_files/figure-html/cell-7-output-1.png" width="582" height="416" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see, it is much cleaner and we can see action potentials firing! However, there does seem to be an artefact, small gaps in the action potential waveform. We will investigate these in the next section.</p>
+<section id="splitting-the-data-by-shank" class="level3">
+<h3 class="anchored" data-anchor-id="splitting-the-data-by-shank">Splitting the data by shank</h3>
+<p>You might notice the data in the above image looks slightly strange. All spikes have predictable gaps between them, we can see this clearly if we zoom into a single action potential waveform:</p>
+<div id="5c69613d" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>si_widgets.plot_traces(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    cmr_recording,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    time_range<span class="op">=</span>(<span class="fl">23.923</span>, <span class="fl">23.928</span>),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    return_in_uV<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    order_channel_by_depth<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.gca()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">200</span>, <span class="dv">300</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pipeline-walkthrough_files/figure-html/cell-8-output-1.png" width="545" height="433" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Discuss
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Look carefully at the plot above. Why do you think there are predictable gaps in the signal every two channels?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Click to reveal the answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Our recording channels are located on two shanks, however we have plot all recording channels together. The channels on different shanks have the same y-position, so they are plot next to eachother, but different x-positions.</p>
+<p>This means that the AP recorded on one shanks channels is interleaved with blank channels from the other shank.</p>
+</div>
+</div>
+</div>
+<p>We can solve this by spliting the recording by shank with the <code>groups</code> property. When SpikeInterface loads the data, it will automatically assign different shanks to different groups:</p>
+<div id="bf4bb0bc" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>split_recording <span class="op">=</span> cmr_recording.split_by(<span class="st">"group"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    split_recording</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{0: ChannelSliceRecording: 192 channels - 30.0kHz - 1 segments - 75,000 samples - 2.50s - int16 dtype 
+                       27.47 MiB, 1: ChannelSliceRecording: 192 channels - 30.0kHz - 1 segments - 75,000 samples - 2.50s - int16 dtype 
+                       27.47 MiB}</code></pre>
+</div>
+</div>
+<p>We can plot both shanks separately:</p>
+<div id="5674d7b9" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> shank_idx, shank_recording <span class="kw">in</span> split_recording.items():</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    si_widgets.plot_traces(</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        shank_recording,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        time_range<span class="op">=</span>(start_time, start_time <span class="op">+</span> <span class="fl">0.1</span>),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        return_in_uV<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        order_channel_by_depth<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>ax[shank_idx]</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    ax[shank_idx].set_title(<span class="ss">f"Shank: </span><span class="sc">{</span>shank_idx<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pipeline-walkthrough_files/figure-html/cell-10-output-1.png" width="625" height="431" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="29e82080" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>si_widgets.plot_traces(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    split_recording[<span class="dv">0</span>],</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    time_range<span class="op">=</span>(<span class="fl">23.923</span>, <span class="fl">23.926</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    return_in_uV<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    order_channel_by_depth<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">"map"</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.gca()</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">200</span>, <span class="dv">300</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pipeline-walkthrough_files/figure-html/cell-11-output-1.png" width="549" height="433" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Much better!</p>
+<p>Now we have our preprocessed data, and have visually confirmed the data quality is good, we are ready to perform spike sorting!</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Things to try
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>How does the data look using <code>median</code> vs.&nbsp;<code>mean</code> for <code>common_average</code>?</li>
+<li>What happens if you set the bandpass filter minimum cutoff to zero? What frequencies are including now? Or set the maximum cutoff to 15000?</li>
+<li>Set <code>return_in_uV=False</code>. Does the data look much different?</li>
+<li>Save the data to disk with the Recording objects <code>.save</code> attribute</li>
+<li>Use <code>get_traces()</code> with and without <code>return_in_uV</code> as <code>True</code> and <code>False</code> to inspect the data type.</li>
+<li>Perform spike detection (e.g.&nbsp;absolute threshold method) on the preprocessed data obtained with <code>get_traces()</code></li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="sorting" class="level2">
+<h2 class="anchored" data-anchor-id="sorting">Sorting</h2>
+<p>Now we are ready to move onto spike sorting. There are many possible spike sorters to choose from, today we will use Kilosort 4.</p>
+<p>All we need to do is pass our preprocessed recording to the sorter of choice, along with any parameters. In our case, we will skip the filtering and common average referencing that Kilosort 4 can perform, as we have already run these steps in SpikeInterface (we cannot turn filtering off, so just set it to a very low cutoff).</p>
+<p>Kilosort will then detect spikes and assign each spike to a unit (i.e.&nbsp;a putative neuron). It will output the time of each spike, what unit it belongs to.</p>
+<p>It is often easiest to sort each shank separately. From now on, we will only sort the first shank of the recording.</p>
+<p>In SpikeInterface, running a sorter is quite simple:</p>
+<div id="d9c8a821" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spikeinterface.sorters <span class="im">as</span> si_sorters</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>sorter_folder <span class="op">=</span> Path(<span class="st">"kilosort4_output"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>sorter_output_folder <span class="op">=</span> sorter_folder <span class="op">/</span> <span class="st">"sorter_output"</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>first_shank_recording <span class="op">=</span> split_recording[<span class="dv">0</span>]</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>sorting <span class="op">=</span> si_sorters.run_sorter(</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"kilosort4"</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    first_shank_recording,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    folder<span class="op">=</span>sorter_folder,</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    remove_existing_folder<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    do_CAR<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    highpass_cutoff<span class="op">=</span><span class="fl">0.1</span>,</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sorting)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+  0%|          | 0/2 [00:00&lt;?, ?it/s]
+ 50%|█████     | 1/2 [00:07&lt;00:07,  7.08s/it]
+100%|██████████| 2/2 [00:13&lt;00:00,  6.63s/it]
+100%|██████████| 2/2 [00:13&lt;00:00,  6.70s/it]
+
+  0%|          | 0/2 [00:00&lt;?, ?it/s]
+ 50%|█████     | 1/2 [00:07&lt;00:07,  7.20s/it]
+100%|██████████| 2/2 [00:13&lt;00:00,  6.76s/it]
+100%|██████████| 2/2 [00:13&lt;00:00,  6.83s/it]
+
+  0%|          | 0/1 [00:00&lt;?, ?it/s]
+100%|██████████| 1/1 [00:00&lt;00:00, 25.32it/s]
+100%|██████████| 1/1 [00:00&lt;00:00, 24.73it/s]
+
+  0%|          | 0/2 [00:00&lt;?, ?it/s]
+ 50%|█████     | 1/2 [00:00&lt;00:00,  1.26it/s]
+100%|██████████| 2/2 [00:01&lt;00:00,  1.42it/s]
+100%|██████████| 2/2 [00:01&lt;00:00,  1.39it/s]
+
+  0%|          | 0/1 [00:00&lt;?, ?it/s]
+100%|██████████| 1/1 [00:00&lt;00:00, 49.10it/s]
+100%|██████████| 1/1 [00:00&lt;00:00, 47.09it/s]</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>KiloSortSortingExtractor: 40 units - 1 segments - 30.0kHz</code></pre>
+</div>
+</div>
+<p>The sorting output is written to disk. The output contains all of the output files of the sorter, and its organisation is sorter-dependent. As we as spike times and unit assignments, it contains other outputs from the sorter e.g.&nbsp;representative waveforms for each units (‘templates’).</p>
+<p>In SpikeInterface, we can access the spike times and unit assignments in a sorter-independent manner, using the <a href="https://spikeinterface.readthedocs.io/en/latest/api.html#spikeinterface.core.BaseSorting"><code>sorting</code></a> object. For example, to get the spike times and unit assignments:</p>
+<div id="294d849c" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>spikes <span class="op">=</span> sorting.to_spike_vector()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>spike_times <span class="op">=</span> spikes[<span class="st">"sample_index"</span>] <span class="op">/</span> sorting.get_sampling_frequency()</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># show the first 5 spikes</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"`spikes` is a structured number array with fields`: </span><span class="sc">{</span>spikes<span class="sc">.</span>dtype<span class="sc">.</span>names<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"First 5 spike times (s): </span><span class="sc">{</span>spike_times[:<span class="dv">5</span>]<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"First 5 unit assignments: </span><span class="sc">{</span>spikes[<span class="st">'unit_index'</span>][:<span class="dv">5</span>]<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>`spikes` is a structured number array with fields`: ('sample_index', 'unit_index', 'segment_index')
+
+First 5 spike times (s): [6.66666667e-05 6.66666667e-05 1.00000000e-04 1.00000000e-04
+ 1.33333333e-04]
+
+First 5 unit assignments: [ 3 11  7 19 39]</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Things to try
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Get a list of all non-empty unit ids</li>
+<li>Remove a unit - what happens to the spikes assigned to this unit?</li>
+<li>Get the spike times for a specific unit</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="postprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="postprocessing">Postprocessing</h2>
+<p>TODO! Depending on timing and content of the other sections, we may want to reduce this down to a single command where we compute all of the extensions, and then go through them in more detail in the SpikeInterface GUI</p>
+<p>Spike sorting is a complex task undertaken in the precense of significant noise. Therefore, many units will not cleanly represent a single neuron. As well as <strong>good</strong> units (i.. where each spike is from the same putative neuron) units may be <strong>noise</strong> (XXX) or <strong>multi-unit activity (MUA)</strong>.</p>
+<p>To determine whether units are good or not, we must look at the individual spikes that belong to a unit, and compute metrics. Cut then out, waveforms. In this section we will go over some key concepts at a very high level - we will develop this much further in the Postprocessing chapter.</p>
+<section id="creating-a-sortinganalzyer" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-sortinganalzyer">Creating a <code>SortingAnalzyer</code></h3>
+<p>The <code>SortingAnalzyer</code> is the key object for postprocessing in SpikeInterface. We can create the <code>SortingAnalzyer</code> by passing the sorting output and preprocessed recording:</p>
+<div id="e63ed9a3" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spikeinterface <span class="im">import</span> create_sorting_analyzer</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>analyzer <span class="op">=</span> create_sorting_analyzer(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    sorting<span class="op">=</span>sorting,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    recording<span class="op">=</span>first_shank_recording</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"c5c4730c62404ec5adab5fdf7d84526d","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+</div>
+<p>Using this sorting analyzer interface, we will compute all of the postprocessing results needed to assess the quality of our sorting.</p>
+<div class="{warning}">
+<p>Some sorters will output their own waveforms, templates, amplitudes ETC (for example, Kilosort has a <code>templates.npy</code> file containnig the templates it generated during sorting).</p>
+<p>These are not loaded by SpikeInterface. Instead, the sorting analzyer will always recompute these features directly from the passed <code>recording</code>.</p>
+</div>
+</section>
+<section id="selecting-spikes" class="level3">
+<h3 class="anchored" data-anchor-id="selecting-spikes">Selecting spikes</h3>
+<p>In our sorting, we can have many many detected spikes. This may be in the order of millios of spikes for an hour long recording.</p>
+<p>In general, we will compute summary statistics over metrics computed from individual spikes. Therefore, including millions of spikes is computationally intensive while providing marginal gains. Instead, we can subselect spikes to include in postprocessing computations (typically, 3-500 spikes per unit is used a default).</p>
+<div id="edc42e5f" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>analyzer.compute(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"random_spikes"</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    method<span class="op">=</span><span class="st">"uniform"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    max_spikes_per_unit<span class="op">=</span><span class="dv">500</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>&lt;spikeinterface.core.analyzer_extension_core.ComputeRandomSpikes at 0x7f03fe9ade10&gt;</code></pre>
+</div>
+</div>
+<p>To access the data assicated with a computed extension, we can use the <code>get_extension</code> function as below. We can see the indices (and compute the spike times) for the selected spikes:</p>
+<div id="91894f71" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>spike_indices <span class="op">=</span> analyzer.get_extension(<span class="st">"random_spikes"</span>).data[<span class="st">"random_spikes_indices"</span>]</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>spike_times <span class="op">=</span> spike_indices <span class="op">/</span> recording.get_sampling_frequency()</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(spike_times)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0.00000000e+00 3.33333333e-05 6.66666667e-05 ... 5.10000000e-02
+ 5.10333333e-02 5.10666667e-02]</code></pre>
+</div>
+</div>
+</section>
+<section id="waveforms" class="level3">
+<h3 class="anchored" data-anchor-id="waveforms">Waveforms</h3>
+<p>The action potential waveforms are important for assessing unit quality. For example, we expect that the waveforms of spikes which belong to a single unit are all similar.</p>
+<p>To compute waveforms in SpikeInterface, we can use the <code>waveforms</code> extension. This will ‘chop out’ the spike waveform from the data, with a time window specified by the <code>ms_before</code> and <code>ms_after</code> (the spike peak) arguments. For example in the schematic below, we could cut out the blue spike in a window defined by the red blox:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/intro-waveforms.png" class="img-fluid figure-img"></p>
+<figcaption>Example raw trace segment with an artifact highlighted in red.</figcaption>
+</figure>
+</div>
+<div id="693c300b" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>analyzer.compute(<span class="st">"waveforms"</span>, ms_before<span class="op">=</span><span class="fl">1.0</span>, ms_after<span class="op">=</span><span class="fl">2.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"f18262d8fbc14fad9f645b6cab727742","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>&lt;spikeinterface.core.analyzer_extension_core.ComputeWaveforms at 0x7f03fe9af010&gt;</code></pre>
+</div>
+</div>
+<p>The waveforms array is three dimensional `(num waveforms, num samples, num channels)</p>
+<div id="ad462e7e" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>waveforms <span class="op">=</span> analyzer.get_extension(<span class="st">"waveforms"</span>).data[<span class="st">"waveforms"</span>]</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(waveforms.shape)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the waveform of the 19th spike (chosen as it looks nice)</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>plt.imshow(waveforms[<span class="dv">18</span>, :, :].T, aspect<span class="op">=</span><span class="st">"auto"</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(1533, 90, 26)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pipeline-walkthrough_files/figure-html/cell-18-output-2.png" width="543" height="413" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="templates" class="level3">
+<h3 class="anchored" data-anchor-id="templates">Templates</h3>
+<p>The template is a representative wavecform from a putative neuron. Often, it is computed as the average waveform from all of the spikes that were assigned to a unit.</p>
+<p>We can compute the extension and access the templates with:</p>
+<div id="3dbda78a" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>analyzer.compute(<span class="st">"templates"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>templates <span class="op">=</span> analyzer.get_extension(<span class="st">"templates"</span>).data[<span class="st">"average"</span>]</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    templates.shape</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(40, 90, 192)</code></pre>
+</div>
+</div>
+<p>SpikeInterface also includes many useful post-processing plots in the widget smodule. For example we can plot a unit template as below:</p>
+<div id="bedd405d" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the template waveform of the first unit </span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>si_widgets.plot_unit_templates(analyzer, unit_ids<span class="op">=</span>[<span class="dv">0</span>])</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pipeline-walkthrough_files/figure-html/cell-20-output-1.png" width="555" height="434" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="amplitudes" class="level3">
+<h3 class="anchored" data-anchor-id="amplitudes">Amplitudes</h3>
+<p>Finally, spike amplitudes are a useful measure for assessing unit quality. We expect that the amplitude of a spike is relatively stable througghout a recording. Changes in spike amplitudes may indicate problems with hte neuron health, drift, or other issues.</p>
+<p>To compute the spike amplitudes, we can run:</p>
+<div id="3de59ec0" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>analyzer.compute(<span class="st">"spike_amplitudes"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>amplitudes <span class="op">=</span> analyzer.get_extension(<span class="st">"spike_amplitudes"</span>).data[<span class="st">"amplitudes"</span>]</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(amplitudes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"34bece9f8f004fe39b1a648bad999df4","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[  0.76293945 -57.9834      10.681152   ... -87.73804    -76.293945
+ -61.798096  ]</code></pre>
+</div>
+</div>
+<p>This gives a list of amplitudes, one for every spike. We will explore how visualisng spike amplitude across time is a useful measure for quality asessment later.</p>
+</section>
+</section>
+<section id="manual-curation-in-spikeinterface-gui" class="level2">
+<h2 class="anchored" data-anchor-id="manual-curation-in-spikeinterface-gui">Manual Curation in spikeinterface-gui</h2>
+<p>From this, we can compute quality metrics used to filter the units e.g.&nbsp;bombcell. We cover this more in the postprocessing chapter.</p>
+<p>For now, see SpikeInterface GUI video?</p>
+<p>https://www.youtube.com/watch?v=OGlQtxzip-Q</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="application/vnd.jupyter.widget-state+json">
+{"state":{"0375214ae96d47e4b7d7a8396237240d":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"07369e870e6a4691a1a0a5ba5eed227e":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"095d9b51abf343c7aecd8cde3e036672":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"0a567193dfda41c390ee5b5d59e2cdae":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"1c4d3c02fdf04ef6a7281622694c8de0":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"259e1d57e3294423aba9d310c0cc37a4":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_76dbb22bc21e4a13a99c54c1524d63f1","placeholder":"​","style":"IPY_MODEL_591a788ce80f437daadde0228af9dbca","tabbable":null,"tooltip":null,"value":" 3/3 [00:03&lt;00:00,  1.02s/it]"}},"28d344fd2a124de8beb0aa0d4957a6cb":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"2a31f6e990564d88b1b2babb2b8f5027":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"34bece9f8f004fe39b1a648bad999df4":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_6d47fcb230c44c2c8aa6c54fc3ede6a8","IPY_MODEL_9627db69a7254f3e9a4e8110e2ebfb33","IPY_MODEL_50bc832444fa4fadbc11aefb60beeb7c"],"layout":"IPY_MODEL_095d9b51abf343c7aecd8cde3e036672","tabbable":null,"tooltip":null}},"50bc832444fa4fadbc11aefb60beeb7c":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_91dec7cc22934ddfae86ef24f8373f9e","placeholder":"​","style":"IPY_MODEL_28d344fd2a124de8beb0aa0d4957a6cb","tabbable":null,"tooltip":null,"value":" 3/3 [00:02&lt;00:00,  1.18it/s]"}},"57167423440c48a984122b5554707fea":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"ProgressView","bar_style":"success","description":"","description_allow_html":false,"layout":"IPY_MODEL_f65d6d2680bd4055bc17479a6060f601","max":3,"min":0,"orientation":"horizontal","style":"IPY_MODEL_0a567193dfda41c390ee5b5d59e2cdae","tabbable":null,"tooltip":null,"value":3}},"591a788ce80f437daadde0228af9dbca":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"5cb91ca83c294413b458bf64523830b6":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"5d1ab8c8dafe4f899204524952ed6b3c":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"5fc8c35ce146419bb3033ed2cfc2f09e":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"606cb2a1dbab4a86ba478d380c733852":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"6d47fcb230c44c2c8aa6c54fc3ede6a8":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_a8820ca32daf498987a13fb2a3aed5fa","placeholder":"​","style":"IPY_MODEL_606cb2a1dbab4a86ba478d380c733852","tabbable":null,"tooltip":null,"value":"spike_amplitudes (no parallelization): 100%"}},"76dbb22bc21e4a13a99c54c1524d63f1":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"77fe406461ec49e39297e7b6229b8818":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_5cb91ca83c294413b458bf64523830b6","placeholder":"​","style":"IPY_MODEL_1c4d3c02fdf04ef6a7281622694c8de0","tabbable":null,"tooltip":null,"value":" 3/3 [00:03&lt;00:00,  1.12s/it]"}},"8d1c29c31eea45f49c3d3d0ceaa33e96":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"8e90c63c82944c289832debd0d6ac41f":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"ProgressView","bar_style":"success","description":"","description_allow_html":false,"layout":"IPY_MODEL_2a31f6e990564d88b1b2babb2b8f5027","max":3,"min":0,"orientation":"horizontal","style":"IPY_MODEL_8d1c29c31eea45f49c3d3d0ceaa33e96","tabbable":null,"tooltip":null,"value":3}},"91dec7cc22934ddfae86ef24f8373f9e":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"9627db69a7254f3e9a4e8110e2ebfb33":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"ProgressView","bar_style":"success","description":"","description_allow_html":false,"layout":"IPY_MODEL_5fc8c35ce146419bb3033ed2cfc2f09e","max":3,"min":0,"orientation":"horizontal","style":"IPY_MODEL_accf012a876245159d8b08fb9783a19f","tabbable":null,"tooltip":null,"value":3}},"a8820ca32daf498987a13fb2a3aed5fa":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"accf012a876245159d8b08fb9783a19f":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"c5c4730c62404ec5adab5fdf7d84526d":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_c74f8d1565c14bcd84f320f1f5cf6af0","IPY_MODEL_57167423440c48a984122b5554707fea","IPY_MODEL_259e1d57e3294423aba9d310c0cc37a4"],"layout":"IPY_MODEL_feaf4f6a545147bb9687c33f3adbe985","tabbable":null,"tooltip":null}},"c74f8d1565c14bcd84f320f1f5cf6af0":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_0375214ae96d47e4b7d7a8396237240d","placeholder":"​","style":"IPY_MODEL_07369e870e6a4691a1a0a5ba5eed227e","tabbable":null,"tooltip":null,"value":"estimate_sparsity (no parallelization): 100%"}},"dcb6ef6f056c41a0873823da91718ad3":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HTMLView","description":"","description_allow_html":false,"layout":"IPY_MODEL_5d1ab8c8dafe4f899204524952ed6b3c","placeholder":"​","style":"IPY_MODEL_fd45184903924459b58eaf10ff895d5d","tabbable":null,"tooltip":null,"value":"compute_waveforms (no parallelization): 100%"}},"ef7c08ccebf34f4fbb5a5ebc10678380":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"f18262d8fbc14fad9f645b6cab727742":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"2.0.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_dcb6ef6f056c41a0873823da91718ad3","IPY_MODEL_8e90c63c82944c289832debd0d6ac41f","IPY_MODEL_77fe406461ec49e39297e7b6229b8818"],"layout":"IPY_MODEL_ef7c08ccebf34f4fbb5a5ebc10678380","tabbable":null,"tooltip":null}},"f65d6d2680bd4055bc17479a6060f601":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"fd45184903924459b58eaf10ff895d5d":{"model_module":"@jupyter-widgets/controls","model_module_version":"2.0.0","model_name":"HTMLStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"2.0.0","_model_name":"HTMLStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"StyleView","background":null,"description_width":"","font_size":null,"text_color":null}},"feaf4f6a545147bb9687c33f3adbe985":{"model_module":"@jupyter-widgets/base","model_module_version":"2.0.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"2.0.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"2.0.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border_bottom":null,"border_left":null,"border_right":null,"border_top":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}}},"version_major":2,"version_minor":0}
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./introduction.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./concept-notes.html" class="pagination-link" aria-label="Concept Notes">
+        <span class="nav-page-text">Concept Notes</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
