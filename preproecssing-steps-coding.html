@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Concept Notes – OSSS Ephys Course 2026</title>
+<title>5&nbsp; Preprocessing - coding – OSSS Ephys Course 2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./preproecssing-steps-coding.html" rel="prev">
+<link href="./concept-notes.html" rel="next">
+<link href="./preprocessing-steps-presentation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concept-notes.html">Concept Notes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./preproecssing-steps-coding.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preprocessing - coding</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -136,13 +136,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./preproecssing-steps-coding.html" class="sidebar-item-text sidebar-link">
+  <a href="./preproecssing-steps-coding.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preprocessing - coding</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./concept-notes.html" class="sidebar-item-text sidebar-link active">
+  <a href="./concept-notes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Concept Notes</span></a>
   </div>
 </li>
@@ -163,23 +163,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#spikeglx-streams" id="toc-spikeglx-streams" class="nav-link active" data-scroll-target="#spikeglx-streams">SpikeGLX streams</a></li>
-  <li><a href="#inheritence" id="toc-inheritence" class="nav-link" data-scroll-target="#inheritence">Inheritence</a></li>
-  <li><a href="#data-storage-in-int16-and-scaling-to-uv" id="toc-data-storage-in-int16-and-scaling-to-uv" class="nav-link" data-scroll-target="#data-storage-in-int16-and-scaling-to-uv">Data storage in <code>int16</code> and scaling to <code>uV</code></a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Concept Notes</h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preprocessing - coding</span></h1>
 </div>
 
 
@@ -196,28 +188,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This page collects longer conceptual explanations that are linked from other chapters. Use it as a reference while reading the walkthroughs.</p>
-<section id="spikeglx-streams" class="level2">
-<h2 class="anchored" data-anchor-id="spikeglx-streams">SpikeGLX streams</h2>
-<p>A <em>stream</em> refers to any contiously recorded stream of bytes, which usually represent numbers. Two key streams are the data stream (which contains recorded data from the probe) and the sync stream. The sync stream is used to align times between the probe and other equiptment used in the experiment (e.g.&nbsp;cameras), and consists of repeating ON/OFF pattern (e.g.&nbsp;0 1 0 1 0 1…).</p>
-<p>TODO: better integrate Source reference: <a href="https://github.com/billkarsh/SpikeGLX/blob/master/Markdown/UserManual.md#data-stream">SpikeGLX User Manual: Data Stream</a>.</p>
-<p>In earlier Neuropixel probe versions, the data stream was separated into AP and LF streams. was filtered in the probe into two separate streams. The action potential (AP) band was filtered with high-pass filter (300, 500 or 1000 Hz, depending on how it was set). This filtering removes low-frequency signal component, leaving the action potentials (which are typically in the 300-3000 Hz range) untouched. This stream is used for spike sorting.</p>
-<p>A local-field potential band was also written, filtered using a 300 Hz low pass filter. This removes high-frequency data (including action potentials) and leaves low-frequency local feild potentials (LF). The LF band represents the summed voltage ossilations generated by neurons across the brain and is subject to differnt analyses.</p>
-<p>In recent Neuropixels versions (e.g.&nbsp;Neuropixels 2) there is no longer a distinction betweeen AP and LF data streams. The unfiltered data is written to disk (saved in the <code>imec0.ap</code> band suffix, although it is now broadband), and popst-hoc filtering left up to the user.</p>
-<p>In more recent Neuropixels versions (e.g.&nbsp;Neuropixels 2) there is no logner a distinction betweeen data streams. The unfiltered data is written to disk (saved in the <code>imec0.ap</code> band suffix, although it is now broadband), and popst-hoc filtering left up to the user.</p>
-</section>
-<section id="inheritence" class="level2">
-<h2 class="anchored" data-anchor-id="inheritence">Inheritence</h2>
-<p>Under the hood, SpikeInterface XX widely relies on a class inheritence model, and the <code>Recording</code> object is a good example of this. A <code>BaseRecording</code> object defines many useful functions for interacting with a recording for example <code>getXXX</code> (see the API docs here). All other recording objects inherit from this BaseRcording object, for example our SpiekGLXRecordingExtractor object inherits from BaseRecording, and so contains all of this.</p>
-<p>Every recording-like object we will deal with doday inherits from BaseRecording and so includes all this functionality. Often, these inherited classes add some functinoaity on top. For example, <code>BaseRecording</code> has a <code>get_traces()</code> fucntion that returns the underlying data. A Filter recording extends this function to first filter the data before returning it.</p>
-</section>
-<section id="data-storage-in-int16-and-scaling-to-uv" class="level2">
-<h2 class="anchored" data-anchor-id="data-storage-in-int16-and-scaling-to-uv">Data storage in <code>int16</code> and scaling to <code>uV</code></h2>
-<p>Most acquisition systems will store data in <code>int16</code> format (i.e.&nbsp;integers in the range XXX) to save storage space. To get these values, the acquired data in <code>uV</code> is scaled and offset into the <code>int16</code> range.</p>
-<p>By default, SpikeInterface will display the raw <code>int16</code> data. To use the stored offsets and gains to reconstrct XX, we can use the <code>return_in_uV</code> argument on many functions. Also see XX, XX and XX for working with these.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -622,13 +594,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./preproecssing-steps-coding.html" class="pagination-link" aria-label="Preprocessing - coding">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Preprocessing - coding</span></span>
+      <a href="./preprocessing-steps-presentation.html" class="pagination-link" aria-label="Preprocessing - theory">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Preprocessing - theory</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">References</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./concept-notes.html" class="pagination-link" aria-label="Concept Notes">
+        <span class="nav-page-text">Concept Notes</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
