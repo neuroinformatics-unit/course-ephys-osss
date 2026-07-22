@@ -1,0 +1,47 @@
+# Course data
+
+Please include a short description of the data and instructions (e.g. code snippets) on how to download / access it.
+
+In future where possible we can host these on zenodo
+
+
+
+
+# Session 1 (introduction)
+
+A 2.5 second NP2010 recording (50MB) that will preprocess and sort without crashing
+and produces a few good units. Could be swapped out for the recording
+used in other sections. Recording is available on github
+[here](https://github.com/neuroinformatics-unit/course-ephys-osss/tree/main/book/data/pipeline-walkthrough) but
+can be moved to zendoo.
+
+
+# Session 2 (preprocessing)
+
+The [IBL Benchmark dataset](https://doi.org/10.6084/m9.figshare.26348630) is a curated set of 11
+Neuropixels recordings in varied brain regions available publicly via the
+[Open Neurophysiology Environment (ONE)](https://int-brain-lab.github.io/ONE/) API.
+Data can be streamed directly — no bulk download required.
+
+The script below demonstrates how to:
+
+1. Connect to the public IBL server and select a probe insertion by its `pid`
+2. Stream a short snippet of raw AP-band voltage
+3. Apply a Butterworth high-pass filter (300 Hz) to remove LFP/DC drift
+4. Run the full IBL destriping pipeline (ADC shift correction + spatial k-filter)
+5. Open all three stages side-by-side in the `viewephys` interactive viewer
+
+```{.python include="scripts/stream_raw_ephys.py"}
+```
+
+*JZ* for the coding part the data from section 1 won't work as will need data that
+is long enough to be motion corrected. Sometimes these recordings need to be
+very long, in which case we might just work with the output but that would not be ideal.
+
+# Session 3 (Sorting)
+
+
+# Session 4 (Post-procesing)
+
+
+# Session 5 (Pynapple, probe alignment)
